@@ -1,21 +1,32 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package proyecto.grupo1.sopaletras;
 
-/**
- *
- * @author Alex
- */
-public class Main {
+import javafx.application.Application;
+import javafx.stage.Stage;
+import javafx.scene.Scene;
+import javafx.scene.Parent;
+import javafx.fxml.FXMLLoader;
+import java.io.IOException;
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
+public class Main extends Application {
+    public static Parent loadFXML(String resource) throws IOException {
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource(resource));
+        return loader.load();
     }
-    
+
+    @Override
+    public void start(Stage primaryStage) {
+        try {
+            Parent root = loadFXML("/fxml/inicio.fxml");
+            Scene scene = new Scene(root, 800, 500);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        }
+        catch (IOException e) {
+            System.out.println("Error al cargar pantalla de inicio: " + e.getMessage());
+        }
+    }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
 }

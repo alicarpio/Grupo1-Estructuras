@@ -1,3 +1,5 @@
 # gradle stuff
 .gradle
 gradle
+gradlew*
+build
