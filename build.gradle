@@ -1,14 +1,41 @@
-apply plugin: 'java'
-apply plugin: 'jacoco'
-apply plugin: 'application'
+plugins {
+    id "application"
+    id 'org.openjfx.javafxplugin' version '0.0.9'
+}
 
+application {
+    mainClass = "mipaquete.Launcher"
+}
 
-mainClassName = 'proyecto.grupo1.sopaletras.Main'
+javafx {
+    version = "16"
+    modules = [ 'javafx.controls', 'javafx.fxml']
+}
 
 repositories {
-    jcenter()
+    mavenCentral()
 }
 
 dependencies {
-    testImplementation     'junit:junit:4.13'
+    runtimeOnly "org.openjfx:javafx-base:$javafx.version:win"
+    runtimeOnly "org.openjfx:javafx-base:$javafx.version:linux"
+    runtimeOnly "org.openjfx:javafx-base:$javafx.version:mac"
+    runtimeOnly "org.openjfx:javafx-controls:$javafx.version:win"
+    runtimeOnly "org.openjfx:javafx-controls:$javafx.version:linux"
+    runtimeOnly "org.openjfx:javafx-controls:$javafx.version:mac"
+    runtimeOnly "org.openjfx:javafx-fxml:$javafx.version:win"
+    runtimeOnly "org.openjfx:javafx-fxml:$javafx.version:linux"
+    runtimeOnly "org.openjfx:javafx-fxml:$javafx.version:mac"
 }
+
+jar {
+    baseName = 'proyecto_grupo_X'
+    duplicatesStrategy = 'include'
+    from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }  
+    manifest {
+        attributes(
+            'Main-Class': 'mipaquete.Launcher'
+        )
+    }
+}
+
