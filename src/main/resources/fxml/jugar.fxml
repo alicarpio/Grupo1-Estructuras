@@ -5,12 +5,15 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml"
-    fx:controller="proyecto.grupo1.sopaletras.controlador.ControladorInicio">
+<BorderPane xmlns:fx="http://javafx.com/fxml" 
+    fx:controller="proyecto.grupo1.sopaletras.controlador.ControladorJugar">
     <center>
         <VBox alignment="center" spacing="15">
+            <HBox spacing="10" alignment="center">
+                <Label text="Tamanio sopa" />
+                <TextField maxWidth="50" fx:id="txtTamanioSopa" />
+            </HBox>
             <Button fx:id="btnJugar" onAction="#onJugar" text="Jugar" maxWidth="200"></Button>
-            <Button fx:id="btnSalir" onAction="#onSalir" text="Salir" maxWidth="200"/>
         </VBox>
     </center>
 </BorderPane>
