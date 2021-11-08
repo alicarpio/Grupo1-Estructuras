@@ -5,7 +5,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml" 
+<BorderPane xmlns:fx="http://javafx.com/fxml"
     fx:controller="proyecto.grupo1.sopaletras.controlador.ControladorJugar">
     <center>
         <VBox alignment="center" spacing="15">

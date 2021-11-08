@@ -5,14 +5,17 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml"
-    fx:controller="proyecto.grupo1.sopaletras.controlador.ControladorSopa">
+<BorderPane xmlns:fx="http://javafx.com/fxml">
     <center>
         <GridPane fx:id="tableroJuego"></GridPane>
     </center>
     <right>
+        <VBox>
+            <Label fx:id="lblPuntos" text="0 puntos" />
+            <VBox>
+                <Label text="Lista de Palabras" />
+                <VBox fx:id="panelPalabrasValidas"></VBox>
+            </VBox>
+        </VBox>
     </right>
-    <bottom>
-        <FlowPane fx:id="panePalabrasValidas"></FlowPane>
-    </bottom>
 </BorderPane>

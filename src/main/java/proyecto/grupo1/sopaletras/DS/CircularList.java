@@ -1,5 +1,7 @@
 package proyecto.grupo1.sopaletras.DS;
 
+import java.util.Iterator;
+
 public class CircularList<T> implements List<T> {
     private int size;
     private Node last;
@@ -136,6 +138,32 @@ public class CircularList<T> implements List<T> {
     @Override
     public boolean isEmpty() {
         return size == 0;
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new Iterator<>() {
+            Node current = head();
+            boolean startedIteration = false;
+
+            @Override
+            public boolean hasNext() {
+                if (!startedIteration && !isEmpty()) {
+                    startedIteration = true;
+                    return true;
+                }
+                else {
+                    return current != head();
+                }
+            }
+
+            @Override
+            public T next() {
+                T elem = current.data;
+                current = current.next;
+                return elem;
+            }
+        };
     }
 
     // "Shift" elements one place to the left

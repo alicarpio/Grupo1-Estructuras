@@ -1,6 +1,7 @@
 package proyecto.grupo1.sopaletras.DS;
 
-import java.util.Arrays;
+import java.util.Arrays; // TODO: revisar
+import java.util.Iterator;
 
 public class Vector<T> implements List<T> {
     private T[] buffer;
@@ -110,6 +111,24 @@ public class Vector<T> implements List<T> {
         T elem = buffer[--size];
         buffer[size] = null;
         return elem;
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        // for (int i = 0; i < size; i++)
+        return new Iterator<>() {
+            int i = 0;
+
+            @Override
+            public boolean hasNext() {
+                return i < size;
+            }
+
+            @Override
+            public T next() {
+                return buffer[i++];
+            }
+        };
     }
 
     @Override
