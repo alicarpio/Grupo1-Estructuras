@@ -4,10 +4,13 @@
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml">
     <center>
-        <GridPane fx:id="tableroJuego"></GridPane>
+        <GridPane fx:id="tableroJuego" alignment="center">
+        </GridPane>
     </center>
     <right>
         <VBox>
@@ -18,4 +21,18 @@
             </VBox>
         </VBox>
     </right>
+    <bottom>
+        <GridPane alignment="center" hgap="10" vgap="10">
+            <padding><Insets top="25" right="25" bottom="10" left="25"/></padding>
+            <ComboBox fx:id="comboRow" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <Button fx:id="btnShiftLeft" text="Rotar a la izquierda" minWidth="200"
+                GridPane.columnIndex="1" GridPane.rowIndex="0" onAction="#rotarIzquierda"/>
+            <Button fx:id="btnShiftRight" text="Rotar a la derecha"  minWidth="200"
+                GridPane.columnIndex="2" GridPane.rowIndex="0" onAction="#rotarDerecha"/>
+            <Button fx:id="btnAddColumn" text="Añadir columna" minWidth="200"
+                GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+            <Button fx:id="btnAddRow" text="Añadir fila" minWidth="200"
+                GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+        </GridPane>
+    </bottom>
 </BorderPane>

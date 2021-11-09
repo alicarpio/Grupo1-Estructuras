@@ -1,3 +1,6 @@
 - [ ] poner un borde alrededor de las palabras validas
 - [ ] hacer todo bonito
-- [ ] armar el grid
+- [X] armar el grid
+- [ ] anadir columnas y filas
+- [ ] rotar filas
+

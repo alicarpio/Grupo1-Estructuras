@@ -19,6 +19,7 @@ public class Main extends Application {
             Parent root = loadFXML("/fxml/inicio.fxml");
             Scene scene = new Scene(root, 800, 500);
             primaryStage.setScene(scene);
+            primaryStage.setMaximized(true);
             primaryStage.show();
         }
         catch (IOException e) {

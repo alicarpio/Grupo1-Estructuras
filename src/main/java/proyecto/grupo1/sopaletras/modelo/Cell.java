@@ -3,9 +3,21 @@ package proyecto.grupo1.sopaletras.modelo;
 public class Cell {
     private char letter;
     private boolean marked;
+    private int row;
+    private int col;
 
-    public Cell(char letter) {
+    public Cell(char letter, int row, int col) {
         this.letter = letter;
+        this.row = row;
+        this.col = col;
+    }
+
+    public int getRow() {
+        return row;
+    }
+
+    public int getCol() {
+        return col;
     }
 
     public char getLetter() {

@@ -168,4 +168,11 @@ public class CircularList<T> implements List<T> {
 
     // "Shift" elements one place to the left
     public void shiftLeft() { last = last.next; }
+
+    public void shiftRight() {
+        Node current = head();
+        while (current.next != last)
+            current = current.next;
+        last = current;
+    }
 }
