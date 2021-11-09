@@ -33,29 +33,27 @@ public class ControladorSopa {
 
     @FXML private ComboBox<Integer> comboRow;
 
-    private int dimensions;
     private SopaLetras sopaLetras;
     private SelectionState selectionState;
 
     public ControladorSopa(int dimensions) {
-        this.dimensions = dimensions;
+        try {
+            sopaLetras = new SopaLetras(dimensions);
+        } catch (Exception ex) {
+            crashearElegantemente(ex.getMessage());
+            ex.printStackTrace();
+        }
     }
 
     @FXML
     private void initialize() {
-        System.out.println("Incializando tablero con N=:" + dimensions);
-        try {
-            sopaLetras = new SopaLetras(dimensions);
-            llenarComboRow();
-            anadirPalabrasValidas();
-            actualizarTablero();
-        } catch (Exception e) {
-            crashearElegantemente(e.getMessage());
-        }
+        actualizarComboRow();
+        actualizarPalabrasValidas();
+        actualizarTablero();
     }
 
-    private void llenarComboRow() {
-        Integer[] rows = new Integer[dimensions];
+    private void actualizarComboRow() {
+        Integer[] rows = new Integer[sopaLetras.getTablero().size()];
         for (int i = 0; i < rows.length; i++) rows[i] = i+1;
         comboRow.getItems().addAll(rows);
         comboRow.setValue(rows[0]);
@@ -63,11 +61,12 @@ public class ControladorSopa {
 
     private void actualizarTablero() {
         tableroJuego.getChildren().clear();
+        int N = sopaLetras.getTablero().size();
         var tablero = sopaLetras.getTablero();
-        for (int i = 0; i < dimensions; i++) {
-            for (int j = 0; j < dimensions; j++) {
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
                 Cell cell = tablero.get(i).get(j);
-                Text t = makeText(String.valueOf(cell.getLetter()), dimensions);
+                Text t = makeText(String.valueOf(cell.getLetter()), N);
                 StackPane pane = new StackPane(t);
                 pane.setAlignment(Pos.CENTER);
                 if (cell.isMarked()) {
@@ -87,19 +86,23 @@ public class ControladorSopa {
         }
         else {
             selectionState.setSelectionEnd(cell);
-            if (selectionState.isValid()) {
-                // TODO: marcar toda la palabra
-                cell.setMarked(true);
-            }
-            else {
+            if (!selectionState.isValid() ||
+                    !sopaLetras.tryMark(
+                          selectionState.getSelectionStart()
+                        , selectionState.getSelectionEnd()
+                        , selectionState.getDirection())) {
                 selectionState.getSelectionStart().setMarked(false);
+            }
+            else { // Una palabra fue marcada con exito
+                actualizarPalabrasValidas();
             }
             selectionState = null;
         }
         actualizarTablero();
     }
 
-    private void anadirPalabrasValidas() {
+    private void actualizarPalabrasValidas() {
+        panelPalabrasValidas.getChildren().clear();
         List<String> palabrasValidas = sopaLetras.getPalabrasValidas();
         for (String palabra : palabrasValidas) {
             panelPalabrasValidas.getChildren().add(new Label(palabra));
@@ -107,31 +110,18 @@ public class ControladorSopa {
     }
 
     @FXML
-    private void rotarIzquierda() {
-        rotar("left");
-    }
+    private void rotarIzquierda() { rotar("left"); }
 
     @FXML
-    private void rotarDerecha() {
-        rotar("right");
-    }
+    private void rotarDerecha() { rotar("right"); }
 
+    /**
+     * Rota una fila del tablero una posicion en la direccion indicada.
+     * @param direccion la direccion en la que se debe rotar la fila
+     */
     private void rotar(String direccion) {
         int row = comboRow.getValue();
-        switch (direccion) {
-            case "left":
-                sopaLetras.getTablero().get(row-1).shiftLeft();
-                break;
-            case "right":
-                sopaLetras.getTablero().get(row-1).shiftRight();
-                break;
-            default:
-                throw new RuntimeException("Invalid rotation direction: " + direccion);
-        }
+        sopaLetras.rotarFila(direccion, row);
         actualizarTablero();
-    }
-
-    public void setDimensions(int dimensions) {
-        this.dimensions = dimensions;
     }
 }

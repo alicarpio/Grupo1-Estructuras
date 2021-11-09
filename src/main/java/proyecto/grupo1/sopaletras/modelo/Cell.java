@@ -31,4 +31,12 @@ public class Cell {
     public void setMarked(boolean marked) {
         this.marked = marked;
     }
+
+    public void setRow(int row) {
+        this.row = row;
+    }
+
+    public void setCol(int col) {
+        this.col = col;
+    }
 }

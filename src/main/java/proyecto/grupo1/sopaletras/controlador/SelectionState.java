@@ -1,6 +1,7 @@
 package proyecto.grupo1.sopaletras.controlador;
 
 import proyecto.grupo1.sopaletras.modelo.Cell;
+import proyecto.grupo1.sopaletras.modelo.Direction;
 
 public class SelectionState {
     private Cell selectionStart;
@@ -35,7 +36,25 @@ public class SelectionState {
      * @return true is the selection is valid, false otherwise
      */
     public boolean isValid() {
-        // TODO
-        return false;
+        return getDirection() != Direction.NONE;
+    }
+
+    public Direction getDirection() {
+        int x1 = selectionStart.getRow();
+        int y1 = selectionStart.getCol();
+        int x2 = selectionEnd.getRow();
+        int y2 = selectionEnd.getCol();
+        if (x1 == x2) {
+            return Direction.ROW;
+        }
+        else if (y1 == y2) {
+            return Direction.COL;
+        }
+        else if (Math.abs(x2-x1) == Math.abs(y2-y1)) {
+            return Direction.DIAG;
+        }
+        else {
+            return Direction.NONE;
+        }
     }
 }
