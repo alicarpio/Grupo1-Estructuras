@@ -24,6 +24,7 @@ public class SopaLetras {
     }
 
     public boolean tryMark(Cell from, Cell to, Direction direction) {
+        // TODO: Change this for a Logger
         System.out.println(direction);
         System.out.printf("Cell1(%d, %d), Cell2(%d, %d)%n", from.getRow(), from.getCol(), to.getRow(), to.getCol());
         switch (direction) {
@@ -122,24 +123,30 @@ public class SopaLetras {
     }
 
     public SopaLetras(int N, String tema) throws Exception {
-        palabrasValidas = FS.readFile(getClass().getResource("/data/" + tema + ".txt").toURI());
-        // TODO: hacer esto menos retrasado
-        // Estamos limitando el numero de palabras a 10
-        while (palabrasValidas.size() > 10)
-            palabrasValidas.popBack();
+        List<String> palabras = FS.readFile(getClass().getResource("/data/" + tema + ".txt").toURI());
+        palabrasValidas = new Vector<>();
+        random = new Rd();
+        for (int i = 0; i < 10;) {
+            String p = random.choice(palabras);
+            if (palabrasValidas.indexOf(p) == -1) {
+                palabrasValidas.pushBack(p);
+                i++;
+            }
+        }
 
         // De esta lista vamos a seleccionar las letras para la sopa
         letras = new Vector<>();
         for (String palabra : palabrasValidas) {
             for (char c : palabra.toCharArray()) {
-                if (!Character.isWhitespace(c))
-                    letras.pushBack(c);
+                // TODO: Quiza deberiamos chequear que no este metida ya, 
+                // para darle a todas las letras la misma oportunidad de ser
+                // escogidas
+                letras.pushBack(c);
             }
         }
 
         // LLenamos el tablero
         tablero = new Vector<>();
-        random = new Rd();
         for (int i = 0; i < N; i++) {
             CircularList<Cell> row = new CircularList<>();
             for (int j = 0; j < N; j++) {
@@ -151,7 +158,7 @@ public class SopaLetras {
     }
 
     public SopaLetras(int N) throws Exception {
-        this(N, "acronyms");
+        this(N, "animales");
     }
 
     public SopaLetras() throws Exception {

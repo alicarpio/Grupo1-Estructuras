@@ -113,6 +113,11 @@ public class Vector<T> implements List<T> {
         return elem;
     }
 
+    public void extend(List<T> other) {
+        for (T elem : other)
+            pushBack(elem);
+    }
+
     @Override
     public Iterator<T> iterator() {
         // for (int i = 0; i < size; i++)
