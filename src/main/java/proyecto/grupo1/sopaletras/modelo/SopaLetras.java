@@ -40,10 +40,8 @@ public class SopaLetras {
         StringBuilder sb = new StringBuilder();
         List<Cell> toMark = new Vector<>();
 
-        int start = Math.min(from.getCol(), to.getCol());
-        int end   = Math.max(from.getCol(), to.getCol());
-
-        for (int i = start; i < row.size() && i <= end; i++) {
+        Minmax<Integer> m = new Minmax<>(from.getCol(), to.getCol());
+        for (int i = m.getMin(); i < row.size() && i <= m.getMax(); i++) {
             Cell cell = row.get(i);
             sb.append(cell.getLetter());
             toMark.pushBack(cell);
@@ -57,11 +55,8 @@ public class SopaLetras {
         StringBuilder sb = new StringBuilder();
         List<Cell> toMark = new Vector<>();
 
-        // TODO: Minmax
-        int start = Math.min(from.getRow(), to.getRow());
-        int end   = Math.max(from.getRow(), to.getRow());
-
-        for (int i = start; i < tablero.size() && i <= end; i++) {
+        Minmax<Integer> m = new Minmax<>(from.getRow(), to.getRow());
+        for (int i = m.getMin(); i < tablero.size() && i <= m.getMax(); i++) {
             Cell cell = tablero.get(i).get(col);
             sb.append(cell.getLetter());
             toMark.pushBack(cell);
@@ -71,8 +66,23 @@ public class SopaLetras {
     }
 
     boolean tryMarkDiag(Cell from, Cell to) {
-        // TODO
-        return false;
+        StringBuilder sb = new StringBuilder();
+        List<Cell> toMark = new Vector<>();
+
+        Minmax<Integer> rowM = new Minmax<>(from.getRow(), to.getRow());
+        Minmax<Integer> colM = new Minmax<>(from.getCol(), to.getCol());
+
+        int i = rowM.getMin();
+        int j = colM.getMin();
+
+        for (; i < rowM.getMax() && j < colM.getMax()
+                && i < tablero.size() && j < tablero.get(i).size(); i++, j++) {
+            Cell cell = tablero.get(i).get(j);
+            sb.append(cell.getLetter());
+            toMark.pushBack(cell);
+        }
+
+        return checkAndMark(sb.toString(), toMark);
     }
 
     boolean checkAndMark(String palabra, List<Cell> cells) {
