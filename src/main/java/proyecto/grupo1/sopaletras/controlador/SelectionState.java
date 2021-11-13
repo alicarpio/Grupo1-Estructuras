@@ -44,6 +44,7 @@ public class SelectionState {
         int y1 = selectionStart.getCol();
         int x2 = selectionEnd.getRow();
         int y2 = selectionEnd.getCol();
+
         if (x1 == x2) {
             return Direction.ROW;
         }

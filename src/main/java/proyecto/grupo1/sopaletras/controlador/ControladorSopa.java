@@ -12,6 +12,7 @@ import javafx.geometry.*;
 import javafx.scene.paint.Color;
 
 import java.io.IOException;
+import java.util.Optional;
 
 import proyecto.grupo1.sopaletras.modelo.SopaLetras;
 import proyecto.grupo1.sopaletras.modelo.Cell;
@@ -86,19 +87,39 @@ public class ControladorSopa {
         }
         else {
             selectionState.setSelectionEnd(cell);
-            if (!selectionState.isValid() ||
-                    !sopaLetras.tryMark(
-                          selectionState.getSelectionStart()
-                        , selectionState.getSelectionEnd()
-                        , selectionState.getDirection())) {
-                selectionState.getSelectionStart().setMarked(false);
-            }
-            else { // Una palabra fue marcada con exito
-                actualizarPalabrasValidas();
-            }
+            if (!selectionState.isValid()) selectionState.getSelectionStart().setMarked(false);
+            else                           marcarPalabra();
             selectionState = null;
         }
         actualizarTablero();
+    }
+
+    private void marcarPalabra() {
+        String palabra = sopaLetras.mark(selectionState.getSelectionStart(),
+                selectionState.getSelectionEnd(), selectionState.getDirection());
+
+        if (palabra == null) return;
+
+        if (sopaLetras.valida(palabra)) {
+            // Si se marco una palabra valida, la removemos de la sopa y
+            // actualizamos el puntaje
+            sopaLetras.remove(palabra);
+            incrementarPuntaje(palabra);
+            actualizarPalabrasValidas();
+        }
+        else if (!sopaLetras.marcada(palabra)) {
+            // Caso contrario, si la palabra no ha sido marcada con
+            // anterioridad, desmarcamos la primera celda de la seleccion
+            // TODO: se debe chequear que no todas las letras maracadas ya
+            // hayan sido marcadas con anterioridad
+            selectionState.getSelectionStart().setMarked(false);
+        }
+    }
+
+    private void incrementarPuntaje(String palabra) {
+        int puntosGanados  = palabra.length();
+        int puntosActuales = Integer.parseInt(lblPuntos.getText());
+        lblPuntos.setText(String.valueOf(puntosActuales + puntosGanados));
     }
 
     private void actualizarPalabrasValidas() {

@@ -37,7 +37,7 @@ public class Vector<T> implements List<T> {
     }
 
     private void shiftLeft(int index) {
-        for (int i = index; i < size; i++) {
+        for (int i = index; i < size - 1; i++) {
             buffer[i] = buffer[i+1];
         }
     }
@@ -45,7 +45,7 @@ public class Vector<T> implements List<T> {
     @Override
     public List<T> remove(T elem) {
         shiftLeft(indexOf(elem));
-        buffer[size--] = null;
+        buffer[--size] = null;
         return this;
     }
 

@@ -9,6 +9,7 @@ import proyecto.grupo1.sopaletras.DS.CircularList;
 public class SopaLetras {
     private List<CircularList<Cell>> tablero;
     private List<String> palabrasValidas;
+    private List<String> palabrasMarcadas;
 
     // Necesitamos estas dos para cuando se quiera anadir una columna
     // o fila a la sopa.
@@ -23,19 +24,33 @@ public class SopaLetras {
         return tablero;
     }
 
-    public boolean tryMark(Cell from, Cell to, Direction direction) {
+    public boolean marcada(String palabra) {
+        return palabrasMarcadas.indexOf(palabra) != -1;
+    }
+
+    public boolean valida(String palabra) {
+        return palabrasValidas.indexOf(palabra) != -1;
+    }
+
+    public void remove(String palabra) {
+        palabrasValidas.remove(palabra);
+        palabrasMarcadas.pushBack(palabra);
+    }
+
+    public String mark(Cell from, Cell to, Direction direction) {
         // TODO: Change this for a Logger
         System.out.println(direction);
         System.out.printf("Cell1(%d, %d), Cell2(%d, %d)%n", from.getRow(), from.getCol(), to.getRow(), to.getCol());
         switch (direction) {
-        case ROW: return tryMarkRow(from, to);
-        case COL: return tryMarkCol(from, to);
-        case DIAG: return tryMarkDiag(from, to);
-        default: return false;
+        case ROW:  return markRow(from, to);
+        case COL:  return markCol(from, to);
+        case DIAG: return markDiag(from, to);
         }
+
+        return null; // Unreachable
     }
 
-    boolean tryMarkRow(Cell from, Cell to) {
+    String markRow(Cell from, Cell to) {
         List<Cell> row = tablero.get(from.getRow());
         StringBuilder sb = new StringBuilder();
         List<Cell> toMark = new Vector<>();
@@ -50,7 +65,7 @@ public class SopaLetras {
         return checkAndMark(sb.toString(), toMark);
     }
 
-    boolean tryMarkCol(Cell from, Cell to) {
+    String markCol(Cell from, Cell to) {
         int col = from.getCol();
         StringBuilder sb = new StringBuilder();
         List<Cell> toMark = new Vector<>();
@@ -65,7 +80,7 @@ public class SopaLetras {
         return checkAndMark(sb.toString(), toMark);
     }
 
-    boolean tryMarkDiag(Cell from, Cell to) {
+    String markDiag(Cell from, Cell to) {
         StringBuilder sb = new StringBuilder();
         List<Cell> toMark = new Vector<>();
 
@@ -85,12 +100,11 @@ public class SopaLetras {
         return checkAndMark(sb.toString(), toMark);
     }
 
-    boolean checkAndMark(String palabra, List<Cell> cells) {
-        if (checkPalabra(palabra)) {
+    String checkAndMark(String palabra, List<Cell> cells) {
+        String palabraMarcada  = checkPalabra(palabra);
+        if (palabraMarcada != null)
             cells.forEach(cell -> cell.setMarked(true));
-            return true;
-        }
-        return false;
+        return palabraMarcada;
     }
 
     String reverse(String orig) {
@@ -99,14 +113,10 @@ public class SopaLetras {
         return sb.toString();
     }
 
-    boolean checkPalabra(String palabra) {
-        boolean found = !(palabrasValidas.indexOf(palabra) == -1
-            && palabrasValidas.indexOf(reverse(palabra)) == -1);
-        if (!found) {
-            return false;
-        }
-        palabrasValidas.remove(palabra);
-        return true;
+    String checkPalabra(String palabra) {
+        if (palabrasValidas.indexOf(palabra) != -1)          return palabra;
+        if (palabrasValidas.indexOf(reverse(palabra)) != -1) return reverse(palabra);
+        return null;
     }
 
     // TODO: change this parameter to an enum
@@ -123,6 +133,8 @@ public class SopaLetras {
         }
 
         // We need to reassign cell coordinates after shifting
+        // TODO: aqui solo es necesario reasignar los indices de la columna of
+        // fila marcada.
         for (int i = 0; i < tablero.size(); i++) {
             for (int j = 0; j < tablero.get(i).size(); j++) {
                 Cell cell = tablero.get(i).get(j);
@@ -134,8 +146,10 @@ public class SopaLetras {
 
     public SopaLetras(int N, String tema) throws Exception {
         List<String> palabras = FS.readFile(getClass().getResource("/data/" + tema + ".txt").toURI());
-        palabrasValidas = new Vector<>();
+        palabrasValidas  = new Vector<>();
+        palabrasMarcadas = new Vector<>();
         random = new Rd();
+
         for (int i = 0; i < 10;) {
             String p = random.choice(palabras);
             if (palabrasValidas.indexOf(p) == -1) {
@@ -148,7 +162,7 @@ public class SopaLetras {
         letras = new Vector<>();
         for (String palabra : palabrasValidas) {
             for (char c : palabra.toCharArray()) {
-                // TODO: Quiza deberiamos chequear que no este metida ya, 
+                // TODO: Quiza deberiamos chequear que no este metida ya,
                 // para darle a todas las letras la misma oportunidad de ser
                 // escogidas
                 letras.pushBack(c);
