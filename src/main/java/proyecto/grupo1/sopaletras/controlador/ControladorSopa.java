@@ -95,23 +95,21 @@ public class ControladorSopa {
     }
 
     private void marcarPalabra() {
-        String palabra = sopaLetras.mark(selectionState.getSelectionStart(),
-                selectionState.getSelectionEnd(), selectionState.getDirection());
-
-        if (palabra == null) return;
+        String palabra =
+            sopaLetras.mark(selectionState.getSelectionStart()
+                          , selectionState.getSelectionEnd()
+                          , selectionState.getDirection());
 
         if (sopaLetras.valida(palabra)) {
-            // Si se marco una palabra valida, la removemos de la sopa y
-            // actualizamos el puntaje
+            // Si se marco una palabra valida, la removemos de la sopa y actualizamos el puntaje
             sopaLetras.remove(palabra);
             incrementarPuntaje(palabra);
             actualizarPalabrasValidas();
         }
-        else if (!sopaLetras.marcada(palabra)) {
+
+        if (!sopaLetras.marcada(palabra) && !selectionState.getSelectionEnd().isMarked()) {
             // Caso contrario, si la palabra no ha sido marcada con
             // anterioridad, desmarcamos la primera celda de la seleccion
-            // TODO: se debe chequear que no todas las letras maracadas ya
-            // hayan sido marcadas con anterioridad
             selectionState.getSelectionStart().setMarked(false);
         }
     }
