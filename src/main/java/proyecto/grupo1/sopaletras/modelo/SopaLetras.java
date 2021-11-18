@@ -47,7 +47,8 @@ public class SopaLetras {
         case DIAG: return markDiag(from, to);
         }
 
-        return null; // Unreachable
+        // Unreachable
+        throw new RuntimeException("mark: palabra was null");
     }
 
     String markRow(Cell from, Cell to) {
@@ -84,39 +85,33 @@ public class SopaLetras {
         StringBuilder sb = new StringBuilder();
         List<Cell> toMark = new Vector<>();
 
-        Minmax<Integer> rowM = new Minmax<>(from.getRow(), to.getRow());
-        Minmax<Integer> colM = new Minmax<>(from.getCol(), to.getCol());
+        int i = from.getRow();
+        int j = from.getCol();
+        int maxX = to.getRow() + (i < to.getRow() ? 1 : -1);
+        int maxY = to.getCol() + (j < to.getCol() ? 1 : -1);
 
-        int i = rowM.getMin();
-        int j = colM.getMin();
-
-        for (; i < rowM.getMax() && j < colM.getMax()
-                && i < tablero.size() && j < tablero.get(i).size(); i++, j++) {
+        while (i != maxX && j != maxY) {
             Cell cell = tablero.get(i).get(j);
             sb.append(cell.getLetter());
             toMark.pushBack(cell);
+
+            i += from.getRow() < to.getRow() ? 1 : -1;
+            j += from.getCol() < to.getCol() ? 1 : -1;
         }
 
         return checkAndMark(sb.toString(), toMark);
     }
 
     String checkAndMark(String palabra, List<Cell> cells) {
-        String palabraMarcada  = checkPalabra(palabra);
-        if (palabraMarcada != null)
+        if (palabrasValidas.indexOf(palabra) != -1 || palabrasValidas.indexOf(reverse(palabra)) != -1)
             cells.forEach(cell -> cell.setMarked(true));
-        return palabraMarcada;
+        return palabra;
     }
 
     String reverse(String orig) {
         StringBuilder sb = new StringBuilder(orig);
         sb.reverse();
         return sb.toString();
-    }
-
-    String checkPalabra(String palabra) {
-        if (palabrasValidas.indexOf(palabra) != -1)          return palabra;
-        if (palabrasValidas.indexOf(reverse(palabra)) != -1) return reverse(palabra);
-        return null;
     }
 
     // TODO: change this parameter to an enum

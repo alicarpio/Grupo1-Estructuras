@@ -20,10 +20,15 @@ public class Util {
         return t;
     }
 
-    public static void crashearElegantemente(String msg) {
+    public static void notifyError(String msg, boolean shouldExit) {
         Alert alert = new Alert(Alert.AlertType.ERROR, msg);
         alert.showAndWait();
-        Platform.exit();
+        if (shouldExit)
+            Platform.exit();
+    }
+
+    public static void notifyError(String msg) {
+        notifyError(msg, false);
     }
 
     @SafeVarargs
