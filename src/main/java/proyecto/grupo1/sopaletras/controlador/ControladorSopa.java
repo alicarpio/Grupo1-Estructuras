@@ -29,16 +29,22 @@ public class ControladorSopa {
     @FXML private Button btnShiftRight;
     @FXML private Button btnAddColumn;
     @FXML private Button btnAddRow;
+    @FXML private Button btnDeleteColumn;
+    @FXML private Button btnDeleteRow;
 
-    @FXML private ComboBox<Integer> comboN;
+    @FXML private ComboBox<Integer> comboRows;
+    @FXML private ComboBox<Integer> comboCols;
 
     final static int MAX_ERRORES = 3;
+    final static int MAX_MODIFICACIONES = 2;
+
+    private int numeroModificaciones;
     private SopaLetras sopaLetras;
     private SelectionState selectionState;
 
-    public ControladorSopa(int dimensions) {
+    public ControladorSopa(int N) {
         try {
-            sopaLetras = new SopaLetras(dimensions);
+            sopaLetras = new SopaLetras(N, N);
         } catch (Exception ex) {
             notifyError(ex.getMessage(), true);
             ex.printStackTrace();
@@ -47,27 +53,36 @@ public class ControladorSopa {
 
     @FXML
     private void initialize() {
-        actualizarComboN();
+        actualizarComboRows();
+        actualizarComboCols();
         actualizarPalabrasValidas();
         actualizarTablero();
     }
 
-    private void actualizarComboN() {
-        // TODO: se necesita uno pa las filas y otro pa las columnas
-        Integer[] N = new Integer[sopaLetras.getTablero().size()];
-        for (int i = 0; i < N.length; i++) N[i] = i+1;
-        comboN.getItems().addAll(N);
-        comboN.setValue(N[0]);
+    private void actualizarComboN(ComboBox<Integer> combo, int N) {
+        combo.getItems().clear();
+        for (int i = 0; i < N; i++)
+            combo.getItems().add(i+1);
+        combo.setValue(1);
+    }
+
+    private void actualizarComboRows() {
+        actualizarComboN(comboRows, sopaLetras.getTablero().size());
+    }
+
+    private void actualizarComboCols() {
+        actualizarComboN(comboCols, sopaLetras.getTablero().get(0).size());
     }
 
     private void actualizarTablero() {
         tableroJuego.getChildren().clear();
-        int N = sopaLetras.getTablero().size();
+        int rows = sopaLetras.getTablero().size();
+        int cols = sopaLetras.getTablero().get(0).size();
         var tablero = sopaLetras.getTablero();
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < N; j++) {
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
                 Cell cell = tablero.get(i).get(j);
-                Text t = makeText(String.valueOf(cell.getLetter()), N);
+                Text t = makeText(String.valueOf(cell.getLetter()), rows);
                 StackPane pane = new StackPane(t);
                 pane.setAlignment(Pos.CENTER);
                 if (cell.isMarked())
@@ -94,10 +109,8 @@ public class ControladorSopa {
     }
 
     private void marcarPalabra() {
-        String palabra =
-            sopaLetras.mark(selectionState.getSelectionStart()
-                          , selectionState.getSelectionEnd()
-                          , selectionState.getDirection());
+        String palabra = sopaLetras.mark(selectionState.getSelectionStart(),
+                selectionState.getSelectionEnd(), selectionState.getDirection());
 
         // Si se marco una palabra valida, la removemos de la sopa y actualizamos el puntaje
         if (sopaLetras.valida(palabra)) {
@@ -128,7 +141,7 @@ public class ControladorSopa {
     private void decrementarPuntaje(String palabra) {
         int puntosPerdidos  = palabra.length();
         int erroresActuales = Integer.parseInt(lblErrores.getText());
-        if (erroresActuales + 1 > MAX_ERRORES)
+        if (erroresActuales >= MAX_ERRORES)
             notifyError("Maximo numero de errores alcanzado!", true);
         int puntosActuales  = Integer.parseInt(lblPuntos.getText());
         lblPuntos.setText(String.valueOf(puntosActuales - puntosPerdidos));
@@ -138,24 +151,38 @@ public class ControladorSopa {
     private void actualizarPalabrasValidas() {
         panelPalabrasValidas.getChildren().clear();
         List<String> palabrasValidas = sopaLetras.getPalabrasValidas();
-        for (String palabra : palabrasValidas) {
+        for (String palabra : palabrasValidas)
             panelPalabrasValidas.getChildren().add(new Label(palabra));
-        }
     }
 
     @FXML
-    private void rotarIzquierda() { rotar("left"); }
+    private void rotar(ActionEvent e) {
+        sopaLetras.rotarFila(e.getTarget() == btnShiftRight ? "right" : "left",
+                comboRows.getValue() - 1);
+        actualizarTablero();
+    }
 
     @FXML
-    private void rotarDerecha() { rotar("right"); }
+    private void anadir(ActionEvent e) {
+        if (!(numeroModificaciones < MAX_MODIFICACIONES)) return;
 
-    /**
-     * Rota una fila del tablero una posicion en la direccion indicada.
-     * @param direccion la direccion en la que se debe rotar la fila
-     */
-    private void rotar(String direccion) {
-        int row = comboN.getValue();
-        sopaLetras.rotarFila(direccion, row);
+        if (e.getTarget() == btnAddColumn)
+            sopaLetras.anadirColumna();
+        else sopaLetras.anadirFila();
+
+        numeroModificaciones++;
+        actualizarTablero();
+    }
+
+    @FXML
+    private void eliminar(ActionEvent e) {
+        if (!(numeroModificaciones < MAX_MODIFICACIONES)) return;
+
+        if (e.getTarget() == btnDeleteRow)
+            sopaLetras.eliminarFila(comboRows.getValue() - 1);
+        else sopaLetras.eliminarColumna(comboCols.getValue() - 1);
+
+        numeroModificaciones++;
         actualizarTablero();
     }
 }

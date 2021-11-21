@@ -31,20 +31,27 @@
     <bottom>
         <GridPane alignment="center" hgap="10" vgap="10">
             <padding><Insets top="25" right="25" bottom="10" left="25"/></padding>
-            <ComboBox fx:id="comboN" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <Label text="Fila:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <ComboBox fx:id="comboRows" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+            <Label text="Columna:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+            <ComboBox fx:id="comboCols" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
             <Button fx:id="btnShiftLeft" text="Rotar a la izquierda" minWidth="200"
-                GridPane.columnIndex="1" GridPane.rowIndex="0" onAction="#rotarIzquierda"/>
+                GridPane.columnIndex="2" GridPane.rowIndex="0" onAction="#rotar"/>
             <Button fx:id="btnShiftRight" text="Rotar a la derecha"  minWidth="200"
-                GridPane.columnIndex="1" GridPane.rowIndex="1" onAction="#rotarDerecha"/>
-            <!-- TODO: anadir onAction -->
+                GridPane.columnIndex="2" GridPane.rowIndex="1" onAction="#rotar"/>
+
             <Button fx:id="btnAddColumn" text="Añadir columna" minWidth="200"
-                GridPane.columnIndex="2" GridPane.rowIndex="0"/>
+                GridPane.columnIndex="3" GridPane.rowIndex="0" onAction="#anadir"/>
             <Button fx:id="btnAddRow" text="Añadir fila" minWidth="200"
-                GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+                GridPane.columnIndex="3" GridPane.rowIndex="1" onAction="#anadir"/>
+
+            <!-- TODO: anadir onAction -->
             <Button fx:id="btnDeleteRow" text="Eliminar fila" minWidth="200"
-                GridPane.columnIndex="3" GridPane.rowIndex="0"/>
+                GridPane.columnIndex="4" GridPane.rowIndex="0" onAction="#eliminar"/>
             <Button fx:id="btnDeleteColumn" text="Eliminar columna" minWidth="200"
-                GridPane.columnIndex="3" GridPane.rowIndex="1"/>
+                GridPane.columnIndex="4" GridPane.rowIndex="1" onAction="#eliminar"/>
         </GridPane>
     </bottom>
 </BorderPane>

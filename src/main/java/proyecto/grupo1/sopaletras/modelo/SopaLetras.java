@@ -10,6 +10,7 @@ public class SopaLetras {
     private List<CircularList<Cell>> tablero;
     private List<String> palabrasValidas;
     private List<String> palabrasMarcadas;
+    private int rows, cols;
 
     // Necesitamos estas dos para cuando se quiera anadir una columna
     // o fila a la sopa.
@@ -103,8 +104,14 @@ public class SopaLetras {
     }
 
     String checkAndMark(String palabra, List<Cell> cells) {
-        if (palabrasValidas.indexOf(palabra) != -1 || palabrasValidas.indexOf(reverse(palabra)) != -1)
+        if (palabrasValidas.indexOf(palabra) != -1) {
             cells.forEach(cell -> cell.setMarked(true));
+            return palabra;
+        }
+        if (palabrasValidas.indexOf(reverse(palabra)) != -1) {
+            cells.forEach(cell -> cell.setMarked(true));
+            return reverse(palabra);
+        }
         return palabra;
     }
 
@@ -118,33 +125,58 @@ public class SopaLetras {
     public void rotarFila(String direccion, int row) {
         switch (direccion) {
             case "left":
-                tablero.get(row-1).shiftLeft();
+                tablero.get(row).shiftLeft();
                 break;
             case "right":
-                tablero.get(row-1).shiftRight();
+                tablero.get(row).shiftRight();
                 break;
             default:
                 throw new RuntimeException("Invalid rotation direction: " + direccion);
         }
 
         // We need to reassign cell coordinates after shifting
-        // TODO: aqui solo es necesario reasignar los indices de la columna of
-        // fila marcada.
-        for (int i = 0; i < tablero.size(); i++) {
-            for (int j = 0; j < tablero.get(i).size(); j++) {
-                Cell cell = tablero.get(i).get(j);
-                cell.setRow(i);
-                cell.setCol(j);
-            }
+        for (int i = 0; i < tablero.get(row).size(); i++) {
+            Cell cell = tablero.get(row).get(i);
+            cell.setRow(row);
+            cell.setCol(i);
         }
     }
 
-    public SopaLetras(int N, String tema) throws Exception {
-        List<String> palabras = FS.readFile(getClass().getResource("/data/" + tema + ".txt").toURI());
+    public void anadirColumna() {
+        for (int row = 0; row < rows; row++)
+            tablero.get(row).pushBack(new Cell(random.choice(letras), row, cols));
+        cols++;
+    }
+
+    public void anadirFila() {
+        CircularList<Cell> row = new CircularList<>();
+        for (int col = 0; col < cols; col++) {
+            Cell cell = new Cell(random.choice(letras), rows, col);
+            row.pushBack(cell);
+        }
+        rows++;
+        tablero.pushBack(row);
+    }
+
+    public void eliminarColumna(int col) {
+        for (int i = 0; i < rows; i++) {
+            Cell cell = tablero.get(i).get(col);
+            tablero.get(i).remove(cell);
+        }
+    }
+
+    public void eliminarFila(int row) {
+        tablero.remove(tablero.get(row));
+    }
+
+    public SopaLetras(int rows, int cols, String tema) throws Exception {
         palabrasValidas  = new Vector<>();
         palabrasMarcadas = new Vector<>();
+        this.rows = rows;
+        this.cols = cols;
         random = new Rd();
 
+        List<String> palabras = FS.readFile(getClass().getResource("/data/" + tema + ".txt").toURI());
         for (int i = 0; i < 10;) {
             String p = random.choice(palabras);
             if (palabrasValidas.indexOf(p) == -1) {
@@ -166,9 +198,9 @@ public class SopaLetras {
 
         // LLenamos el tablero
         tablero = new Vector<>();
-        for (int i = 0; i < N; i++) {
+        for (int i = 0; i < rows; i++) {
             CircularList<Cell> row = new CircularList<>();
-            for (int j = 0; j < N; j++) {
+            for (int j = 0; j < cols; j++) {
                 Cell cell = new Cell(random.choice(letras), i, j);
                 row.pushBack(cell);
             }
@@ -176,11 +208,11 @@ public class SopaLetras {
         }
     }
 
-    public SopaLetras(int N) throws Exception {
-        this(N, "animales");
+    public SopaLetras(int rows, int cols) throws Exception {
+        this(rows, cols, "animales");
     }
 
     public SopaLetras() throws Exception {
-        this(6);
+        this(12, 12);
     }
 }
