@@ -21,6 +21,10 @@ public class SopaLetras {
         return palabrasValidas;
     }
 
+    public List<String> getPalabrasMarcadas() {
+        return palabrasMarcadas;
+    }
+
     public List<CircularList<Cell>> getTablero() {
         return tablero;
     }
@@ -42,6 +46,7 @@ public class SopaLetras {
         // TODO: Change this for a Logger
         System.out.println(direction);
         System.out.printf("Cell1(%d, %d), Cell2(%d, %d)%n", from.getRow(), from.getCol(), to.getRow(), to.getCol());
+
         switch (direction) {
         case ROW:  return markRow(from, to);
         case COL:  return markCol(from, to);
@@ -163,10 +168,12 @@ public class SopaLetras {
             Cell cell = tablero.get(i).get(col);
             tablero.get(i).remove(cell);
         }
+        cols--;
     }
 
     public void eliminarFila(int row) {
         tablero.remove(tablero.get(row));
+        rows--;
     }
 
     public SopaLetras(int rows, int cols, String tema) throws Exception {
@@ -189,9 +196,6 @@ public class SopaLetras {
         letras = new Vector<>();
         for (String palabra : palabrasValidas) {
             for (char c : palabra.toCharArray()) {
-                // TODO: Quiza deberiamos chequear que no este metida ya,
-                // para darle a todas las letras la misma oportunidad de ser
-                // escogidas
                 letras.pushBack(c);
             }
         }

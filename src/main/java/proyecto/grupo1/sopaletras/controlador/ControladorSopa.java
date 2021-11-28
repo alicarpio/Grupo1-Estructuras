@@ -43,8 +43,12 @@ public class ControladorSopa {
     private SelectionState selectionState;
 
     public ControladorSopa(int N) {
-        try {
-            sopaLetras = new SopaLetras(N, N);
+        this(N, "animales");
+    }
+
+    public ControladorSopa(int N, String tema) {
+         try {
+            sopaLetras = new SopaLetras(N, N, tema);
         } catch (Exception ex) {
             notifyError(ex.getMessage(), true);
             ex.printStackTrace();
@@ -101,8 +105,10 @@ public class ControladorSopa {
         }
         else {
             selectionState.setSelectionEnd(cell);
-            if (!selectionState.isValid()) selectionState.getSelectionStart().setMarked(false);
-            else                           marcarPalabra();
+            if (!selectionState.isValid())
+                selectionState.getSelectionStart().setMarked(false);
+            else
+                marcarPalabra();
             selectionState = null;
         }
         actualizarTablero();
@@ -125,7 +131,7 @@ public class ControladorSopa {
 
         // Caso contrario, si la palabra no ha sido marcada con
         // anterioridad desmarcamos la primera celda de la seleccion
-        if (!sopaLetras.marcada(palabra) 
+        if (!sopaLetras.marcada(palabra)
                 && !selectionState.getSelectionEnd().isMarked()
                 || selectionState.getSelectionStart() == selectionState.getSelectionEnd()) {
             selectionState.getSelectionStart().setMarked(false);
@@ -151,8 +157,18 @@ public class ControladorSopa {
     private void actualizarPalabrasValidas() {
         panelPalabrasValidas.getChildren().clear();
         List<String> palabrasValidas = sopaLetras.getPalabrasValidas();
-        for (String palabra : palabrasValidas)
-            panelPalabrasValidas.getChildren().add(new Label(palabra));
+        List<String> palabrasMarcadas = sopaLetras.getPalabrasMarcadas();
+        for (String palabra : palabrasValidas) {
+            Text t = new Text(palabra);
+            t.setFont(Font.font(15));
+            panelPalabrasValidas.getChildren().add(t);
+        }
+        for (String palabra : palabrasMarcadas) {
+            Text t = new Text(palabra);
+            t.setFont(Font.font(15));
+            t.setStrikethrough(true);
+            panelPalabrasValidas.getChildren().add(t);
+        }
     }
 
     @FXML
@@ -168,7 +184,8 @@ public class ControladorSopa {
 
         if (e.getTarget() == btnAddColumn)
             sopaLetras.anadirColumna();
-        else sopaLetras.anadirFila();
+        else
+            sopaLetras.anadirFila();
 
         numeroModificaciones++;
         actualizarTablero();
@@ -180,7 +197,8 @@ public class ControladorSopa {
 
         if (e.getTarget() == btnDeleteRow)
             sopaLetras.eliminarFila(comboRows.getValue() - 1);
-        else sopaLetras.eliminarColumna(comboCols.getValue() - 1);
+        else
+            sopaLetras.eliminarColumna(comboCols.getValue() - 1);
 
         numeroModificaciones++;
         actualizarTablero();

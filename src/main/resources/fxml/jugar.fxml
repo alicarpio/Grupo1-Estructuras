@@ -4,6 +4,7 @@
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.collections.*?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml"
     fx:controller="proyecto.grupo1.sopaletras.controlador.ControladorJugar">
@@ -11,7 +12,7 @@
         <VBox alignment="center" spacing="15">
             <HBox spacing="10" alignment="center">
                 <Label text="Tamanio sopa" />
-                <TextField maxWidth="50" fx:id="txtTamanioSopa" />
+                <ComboBox fx:id="comboDim" ></ComboBox>
             </HBox>
             <Button fx:id="btnJugar" onAction="#onJugar" text="Jugar" maxWidth="200"></Button>
         </VBox>
