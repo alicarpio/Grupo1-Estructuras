@@ -1,16 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.* ?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml"
-    fx:controller="proyecto.grupo1.sopaletras.controlador.ControladorInicio">
-    <center>
-        <VBox alignment="center" spacing="15">
-            <Button fx:id="btnJugar" onAction="#onJugar" text="Jugar" maxWidth="200"></Button>
-            <Button fx:id="btnSalir" onAction="#onSalir" text="Salir" maxWidth="200"/>
-        </VBox>
-    </center>
-</BorderPane>
+<StackPane maxHeight="735.0" maxWidth="1100.0" minHeight="735.0" minWidth="1100.0" prefHeight="735.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyecto.grupo1.sopaletras.controlador.ControladorInicio">
+   <children>
+      <ImageView fitHeight="735.0" fitWidth="1100.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/letters_back.jpg" />
+         </image>
+      </ImageView>
+      <BorderPane>
+         <center>
+            <VBox alignment="center" prefHeight="700.0" prefWidth="1100.0" spacing="15">
+               <children>
+                  <Button fx:id="btnJugar" blendMode="DIFFERENCE" maxHeight="50.0" maxWidth="200" minHeight="50.0" minWidth="200.0" onAction="#onJugar" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 25;" text="Jugar" textAlignment="CENTER" textFill="#002480">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btnSalir" blendMode="DIFFERENCE" maxHeight="50.0" maxWidth="200" minHeight="50.0" minWidth="200.0" onAction="#onSalir" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 25;" text="Salir" textAlignment="CENTER" textFill="#002480">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+         </center>
+      </BorderPane>
+   </children>
+</StackPane>

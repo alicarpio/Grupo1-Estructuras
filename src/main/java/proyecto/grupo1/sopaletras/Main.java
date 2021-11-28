@@ -1,11 +1,11 @@
 package proyecto.grupo1.sopaletras;
 
-import javafx.application.Application;
-import javafx.stage.Stage;
-import javafx.scene.Scene;
-import javafx.scene.Parent;
-import javafx.fxml.FXMLLoader;
 import java.io.IOException;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 public class Main extends Application {
     public static Parent loadFXML(String resource) throws IOException {
@@ -17,9 +17,10 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         try {
             Parent root = loadFXML("/fxml/inicio.fxml");
-            Scene scene = new Scene(root, 800, 500);
+            Scene scene = new Scene(root, 1100, 735);
             primaryStage.setScene(scene);
-            primaryStage.setMaximized(true);
+            primaryStage.setResizable(false);
+//            primaryStage.setMaximized(true);
             primaryStage.show();
         }
         catch (IOException e) {
