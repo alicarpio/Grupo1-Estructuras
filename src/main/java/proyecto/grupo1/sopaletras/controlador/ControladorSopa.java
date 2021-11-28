@@ -2,22 +2,16 @@ package proyecto.grupo1.sopaletras.controlador;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.*;
-import javafx.scene.*;
-import javafx.stage.*;
-import javafx.application.Platform;
-import javafx.scene.layout.*;
-import javafx.scene.control.*;
-import javafx.scene.text.*;
 import javafx.geometry.*;
+import javafx.scene.control.*;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-
-import java.io.IOException;
-import java.util.Optional;
-
-import proyecto.grupo1.sopaletras.modelo.SopaLetras;
-import proyecto.grupo1.sopaletras.modelo.Cell;
+import javafx.scene.text.*;
 import proyecto.grupo1.sopaletras.DS.List;
+import proyecto.grupo1.sopaletras.FX.Util;
 import static proyecto.grupo1.sopaletras.FX.Util.*;
+import proyecto.grupo1.sopaletras.modelo.Cell;
+import proyecto.grupo1.sopaletras.modelo.SopaLetras;
 
 public class ControladorSopa {
     @FXML private Label lblPuntos;
@@ -160,12 +154,12 @@ public class ControladorSopa {
         List<String> palabrasMarcadas = sopaLetras.getPalabrasMarcadas();
         for (String palabra : palabrasValidas) {
             Text t = new Text(palabra);
-            t.setFont(Font.font(15));
+            t.setFont(Font.font(18));
             panelPalabrasValidas.getChildren().add(t);
         }
         for (String palabra : palabrasMarcadas) {
             Text t = new Text(palabra);
-            t.setFont(Font.font(15));
+            t.setFont(Font.font(18));
             t.setStrikethrough(true);
             panelPalabrasValidas.getChildren().add(t);
         }
@@ -180,7 +174,10 @@ public class ControladorSopa {
 
     @FXML
     private void anadir(ActionEvent e) {
-        if (!(numeroModificaciones < MAX_MODIFICACIONES)) return;
+        if (!(numeroModificaciones < MAX_MODIFICACIONES)) {
+            Util.notifyError("Limite de Añadir/Eliminar Alcanzado");
+            return;
+        }
 
         if (e.getTarget() == btnAddColumn)
             sopaLetras.anadirColumna();
@@ -193,7 +190,10 @@ public class ControladorSopa {
 
     @FXML
     private void eliminar(ActionEvent e) {
-        if (!(numeroModificaciones < MAX_MODIFICACIONES)) return;
+        if (!(numeroModificaciones < MAX_MODIFICACIONES)) {
+            Util.notifyError("Limite de Añadir/Eliminar Alcanzado");
+            return;
+        }
 
         if (e.getTarget() == btnDeleteRow)
             sopaLetras.eliminarFila(comboRows.getValue() - 1);
