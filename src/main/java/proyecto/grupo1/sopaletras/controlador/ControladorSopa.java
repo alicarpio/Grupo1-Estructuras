@@ -156,12 +156,12 @@ public class ControladorSopa {
         List<String> palabrasMarcadas = sopaLetras.getPalabrasMarcadas();
         for (String palabra : palabrasValidas) {
             Text t = new Text(palabra);
-            t.setFont(Font.font(20));
+            t.setFont(Font.font(24));
             panelPalabrasValidas.getChildren().add(t);
         }
         for (String palabra : palabrasMarcadas) {
             Text t = new Text(palabra);
-            t.setFont(Font.font(20));
+            t.setFont(Font.font(24));
             t.setStrikethrough(true);
             panelPalabrasValidas.getChildren().add(t);
         }
@@ -188,10 +188,16 @@ public class ControladorSopa {
             return;
         }
 
-        if (e.getTarget() == btnAddColumn)
+        if (e.getTarget() == btnAddColumn) {
             sopaLetras.anadirColumna();
-        else
+            actualizarComboCols();
+        }            
+        else {
             sopaLetras.anadirFila();
+            actualizarComboRows();
+        }
+            
+        
 
         numeroModificaciones++;
         actualizarTablero();
@@ -204,11 +210,14 @@ public class ControladorSopa {
             return;
         }
 
-        if (e.getTarget() == btnDeleteRow)
+        if (e.getTarget() == btnDeleteRow) {
             sopaLetras.eliminarFila(comboRows.getValue() - 1);
-        else
+            actualizarComboRows();
+        }            
+        else {
             sopaLetras.eliminarColumna(comboCols.getValue() - 1);
-
+            actualizarComboCols();
+        }
         numeroModificaciones++;
         actualizarTablero();
     }
