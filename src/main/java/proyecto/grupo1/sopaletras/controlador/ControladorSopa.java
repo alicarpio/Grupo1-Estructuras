@@ -25,6 +25,8 @@ public class ControladorSopa {
     @FXML private Button btnAddRow;
     @FXML private Button btnDeleteColumn;
     @FXML private Button btnDeleteRow;
+    @FXML private Button btnShiftUp;
+    @FXML private Button btnShiftDown;
 
     @FXML private ComboBox<Integer> comboRows;
     @FXML private ComboBox<Integer> comboCols;
@@ -154,12 +156,12 @@ public class ControladorSopa {
         List<String> palabrasMarcadas = sopaLetras.getPalabrasMarcadas();
         for (String palabra : palabrasValidas) {
             Text t = new Text(palabra);
-            t.setFont(Font.font(18));
+            t.setFont(Font.font(20));
             panelPalabrasValidas.getChildren().add(t);
         }
         for (String palabra : palabrasMarcadas) {
             Text t = new Text(palabra);
-            t.setFont(Font.font(18));
+            t.setFont(Font.font(20));
             t.setStrikethrough(true);
             panelPalabrasValidas.getChildren().add(t);
         }
@@ -169,6 +171,13 @@ public class ControladorSopa {
     private void rotar(ActionEvent e) {
         sopaLetras.rotarFila(e.getTarget() == btnShiftRight ? "right" : "left",
                 comboRows.getValue() - 1);
+        actualizarTablero();
+    }
+    
+    @FXML
+    private void rotarVert(ActionEvent e) {
+        sopaLetras.rotarCol(e.getTarget() == btnShiftUp ? "up" : "down",
+                comboCols.getValue());
         actualizarTablero();
     }
 

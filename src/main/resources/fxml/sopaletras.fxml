@@ -127,12 +127,12 @@
                      <Font name="System Bold" size="18.0" />
                   </font>
                </Button>
-               <Button fx:id="btnShiftDown" blendMode="EXCLUSION" maxHeight="50.0" maxWidth="200.0" minHeight="50.0" minWidth="200" onAction="#rotar" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 30;" text="Abajo" textFill="#262c10" GridPane.columnIndex="3" GridPane.rowIndex="1">
+               <Button fx:id="btnShiftDown" blendMode="EXCLUSION" maxHeight="50.0" maxWidth="200.0" minHeight="50.0" minWidth="200" onAction="#rotarVert" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 30;" text="Abajo" textFill="#262c10" GridPane.columnIndex="3" GridPane.rowIndex="1">
                   <font>
                      <Font name="System Bold" size="18.0" />
                   </font>
                </Button>
-               <Button fx:id="btnShiftUp" blendMode="EXCLUSION" maxHeight="50.0" maxWidth="200.0" minHeight="50.0" minWidth="200" onAction="#rotar" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 30;" text="Arriba" textFill="#262c10" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <Button fx:id="btnShiftUp" blendMode="EXCLUSION" maxHeight="50.0" maxWidth="200.0" minHeight="50.0" minWidth="200" onAction="#rotarVert" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 30;" text="Arriba" textFill="#262c10" GridPane.columnIndex="2" GridPane.rowIndex="1">
                   <font>
                      <Font name="System Bold" size="18.0" />
                   </font>

@@ -1,10 +1,8 @@
 package proyecto.grupo1.sopaletras.modelo;
 
-import java.io.IOException;
-
+import proyecto.grupo1.sopaletras.DS.CircularList;
 import proyecto.grupo1.sopaletras.DS.List;
 import proyecto.grupo1.sopaletras.DS.Vector;
-import proyecto.grupo1.sopaletras.DS.CircularList;
 
 public class SopaLetras {
     private List<CircularList<Cell>> tablero;
@@ -124,6 +122,32 @@ public class SopaLetras {
         StringBuilder sb = new StringBuilder(orig);
         sb.reverse();
         return sb.toString();
+    }
+    
+    public void rotarCol(String direccion, int col) {
+        
+        CircularList<Cell> column = new CircularList();
+        
+        for (int i = 0 ; i < rows ; i++) {
+            column.pushBack(tablero.get(i).get(col-1));
+        } 
+        
+        switch (direccion) {
+            case "up":
+                column.shiftLeft();
+                for (int i = 0 ; i < rows ; i++) {
+                    tablero.get(i).replace(column.get(i), col-1);
+                }
+                break;
+            case "down":
+                column.shiftRight();
+                for (int i = 0 ; i < rows ; i++) {
+                    tablero.get(i).replace(column.get(i), col-1);
+                }
+                break;
+            default:
+                throw new RuntimeException("Invalid rotation direction: " + direccion);
+        }
     }
 
     // TODO: change this parameter to an enum

@@ -66,6 +66,11 @@ public class Vector<T> implements List<T> {
         return this;
     }
 
+    @Override
+    public List<T> replace(T elem, int index) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public static class VectorIndexOutOfBoundsException
             extends RuntimeException {
         public VectorIndexOutOfBoundsException(String msg) {
