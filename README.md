@@ -1,13 +1,10 @@
-# Proyecto-Primer Parcial-Estructuras de datos
+# Proyecto Primer Parcial Estructuras de Datos
 
-## TODO
+## Funcionalidad opcional implementada
 
-- [x] contador de errores
-- [ ] insertar nuevas filas o columnas
-- [ ] eliminar filas o columnas
-- [ ] implementar funcionalidad opcional
-- [ ] .docx entregable
-  - [ ] screenshots de la interfaz
-  - [ ] url del repo
-  - [ ] tabla de coevaluacion
-
+- [x] Rotar columnas ademas de filas
+- [ ] Sopa de letras con distinta tematica
+- [x] Tachar palabras que son encontradas
+- [ ] Modo "extreme" con temporizador
+- [ ] Sobreescribir algunas letras del tablero
+- [ ] Variante de sopa numerica
