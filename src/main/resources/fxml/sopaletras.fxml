@@ -34,9 +34,9 @@
           <right>
               <VBox prefHeight="530.0" prefWidth="247.0">
                   <HBox>
-                      <Label prefHeight="35.0" prefWidth="94.0" text="Puntos: " textFill="#3343f2">
+                      <Label prefHeight="53.0" prefWidth="139.0" text="Puntos: " textFill="#3343f2">
                      <font>
-                        <Font name="System Bold Italic" size="20.0" />
+                        <Font name="System Bold Italic" size="36.0" />
                      </font>
                      <HBox.margin>
                         <Insets left="15.0" />
@@ -44,14 +44,14 @@
                   </Label>
                       <Label fx:id="lblPuntos" text="0" textFill="#3343f2">
                      <font>
-                        <Font name="System Bold Italic" size="20.0" />
+                        <Font name="System Bold Italic" size="36.0" />
                      </font>
                   </Label>
                   </HBox>
                   <HBox>
-                      <Label prefHeight="35.0" prefWidth="98.0" text="Errores: " textFill="#da2b2b">
+                      <Label prefHeight="53.0" prefWidth="139.0" text="Errores: " textFill="#da2b2b">
                      <font>
-                        <Font name="System Bold Italic" size="20.0" />
+                        <Font name="System Bold Italic" size="36.0" />
                      </font>
                      <HBox.margin>
                         <Insets left="15.0" />
@@ -59,7 +59,7 @@
                   </Label>
                       <Label fx:id="lblErrores" text="0" textFill="#da2b2b">
                      <font>
-                        <Font name="System Bold Italic" size="20.0" />
+                        <Font name="System Bold Italic" size="36.0" />
                      </font>
                   </Label>
                   </HBox>
@@ -75,7 +75,18 @@
                      </font>
                   </Label>
                       <VBox fx:id="panelPalabrasValidas" alignment="CENTER" />
+                  <VBox.margin>
+                     <Insets right="10.0" />
+                  </VBox.margin>
                   </VBox>
+               <Button blendMode="EXCLUSION" maxHeight="50.0" maxWidth="150.0" minHeight="50.0" minWidth="150.0" onAction="#onSalir" prefHeight="50.0" prefWidth="150.0" style="-fx-background-radius: 30;" text="Salir" textFill="#262c10">
+                  <font>
+                     <Font name="System Bold" size="18.0" />
+                  </font>
+                  <VBox.margin>
+                     <Insets left="18.0" top="20.0" />
+                  </VBox.margin>
+               </Button>
                <BorderPane.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </BorderPane.margin>
@@ -125,7 +136,7 @@
                         <Insets left="20.0" />
                      </padding>
                   </ComboBox>
-                  <Button fx:id="btnShiftRight" blendMode="EXCLUSION" maxHeight="50.0" maxWidth="150.0" minHeight="50.0" minWidth="150.0" onAction="#rotar" prefHeight="50.0" prefWidth="150.0" style="-fx-background-radius: 30;" text="Derecha" textFill="#262c10" GridPane.columnIndex="2">
+                  <Button fx:id="btnShiftRight" blendMode="EXCLUSION" maxHeight="50.0" maxWidth="150.0" minHeight="50.0" minWidth="150.0" onAction="#rotar" prefHeight="50.0" prefWidth="150.0" style="-fx-background-radius: 30;" text="Derecha" textFill="#262c10" GridPane.columnIndex="3">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -160,7 +171,7 @@
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Button>
-                  <Button fx:id="btnShiftLeft" blendMode="EXCLUSION" maxHeight="50.0" maxWidth="150.0" minHeight="50.0" minWidth="150.0" onAction="#rotar" prefHeight="50.0" prefWidth="150.0" style="-fx-background-radius: 30;" text="Izquierda" textFill="#262c10" GridPane.columnIndex="3">
+                  <Button fx:id="btnShiftLeft" blendMode="EXCLUSION" maxHeight="50.0" maxWidth="150.0" minHeight="50.0" minWidth="150.0" onAction="#rotar" prefHeight="50.0" prefWidth="150.0" style="-fx-background-radius: 30;" text="Izquierda" textFill="#262c10" GridPane.columnIndex="2">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>

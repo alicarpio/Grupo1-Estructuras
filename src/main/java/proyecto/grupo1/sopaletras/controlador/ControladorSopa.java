@@ -1,5 +1,6 @@
 package proyecto.grupo1.sopaletras.controlador;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.*;
 import javafx.geometry.*;
@@ -218,5 +219,10 @@ public class ControladorSopa {
         }
         numeroModificaciones++;
         actualizarTablero();
+    }
+
+    @FXML
+    private void onSalir(ActionEvent e) {
+        Platform.exit();
     }
 }
