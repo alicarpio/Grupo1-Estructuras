@@ -173,7 +173,7 @@ public class ControladorSopa {
                 comboRows.getValue() - 1);
         actualizarTablero();
     }
-    
+
     @FXML
     private void rotarVert(ActionEvent e) {
         sopaLetras.rotarCol(e.getTarget() == btnShiftUp ? "up" : "down",
@@ -184,20 +184,18 @@ public class ControladorSopa {
     @FXML
     private void anadir(ActionEvent e) {
         if (!(numeroModificaciones < MAX_MODIFICACIONES)) {
-            Util.notifyError("Limite de Añadir/Eliminar Alcanzado");
+            Util.notifyError("Limite de AÃ±adir/Eliminar Alcanzado");
             return;
         }
 
         if (e.getTarget() == btnAddColumn) {
             sopaLetras.anadirColumna();
             actualizarComboCols();
-        }            
+        }
         else {
             sopaLetras.anadirFila();
             actualizarComboRows();
         }
-            
-        
 
         numeroModificaciones++;
         actualizarTablero();
@@ -206,14 +204,14 @@ public class ControladorSopa {
     @FXML
     private void eliminar(ActionEvent e) {
         if (!(numeroModificaciones < MAX_MODIFICACIONES)) {
-            Util.notifyError("Limite de Añadir/Eliminar Alcanzado");
+            Util.notifyError("Limite de AÃ±adir/Eliminar Alcanzado");
             return;
         }
 
         if (e.getTarget() == btnDeleteRow) {
             sopaLetras.eliminarFila(comboRows.getValue() - 1);
             actualizarComboRows();
-        }            
+        }
         else {
             sopaLetras.eliminarColumna(comboCols.getValue() - 1);
             actualizarComboCols();
