@@ -23,7 +23,7 @@
                <children>
                   <Label blendMode="DARKEN" prefHeight="35.0" prefWidth="228.0" text="Tamaño del Tablero" textFill="#806e16">
                      <font>
-                        <Font name="System Bold" size="24.0" />
+                        <Font name="System Bold" size="20.0" />
                      </font>
                   </Label>
                   <ComboBox fx:id="comboDim" maxHeight="50.0" maxWidth="130.0" minHeight="50.0" minWidth="130.0" prefHeight="50.0" prefWidth="130.0" style="-fx-background-radius: 10;" />

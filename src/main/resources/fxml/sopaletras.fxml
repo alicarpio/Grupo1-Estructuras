@@ -36,7 +36,7 @@
                   <HBox>
                       <Label prefHeight="35.0" prefWidth="94.0" text="Puntos: " textFill="#3343f2">
                      <font>
-                        <Font name="System Bold Italic" size="24.0" />
+                        <Font name="System Bold Italic" size="20.0" />
                      </font>
                      <HBox.margin>
                         <Insets left="15.0" />
@@ -44,14 +44,14 @@
                   </Label>
                       <Label fx:id="lblPuntos" text="0" textFill="#3343f2">
                      <font>
-                        <Font name="System Bold Italic" size="24.0" />
+                        <Font name="System Bold Italic" size="20.0" />
                      </font>
                   </Label>
                   </HBox>
                   <HBox>
                       <Label prefHeight="35.0" prefWidth="98.0" text="Errores: " textFill="#da2b2b">
                      <font>
-                        <Font name="System Bold Italic" size="24.0" />
+                        <Font name="System Bold Italic" size="20.0" />
                      </font>
                      <HBox.margin>
                         <Insets left="15.0" />
@@ -59,7 +59,7 @@
                   </Label>
                       <Label fx:id="lblErrores" text="0" textFill="#da2b2b">
                      <font>
-                        <Font name="System Bold Italic" size="24.0" />
+                        <Font name="System Bold Italic" size="20.0" />
                      </font>
                   </Label>
                   </HBox>

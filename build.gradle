@@ -4,7 +4,6 @@ plugins {
 }
 
 application {
-    // TODO: cambiar al launcher
     mainClass = "proyecto.grupo1.sopaletras.Main"
 }
 
@@ -30,13 +29,12 @@ dependencies {
 }
 
 jar {
-    baseName = 'proyecto_grupo_X'
+    baseName = 'Grupo_01'
     duplicatesStrategy = 'include'
     from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }  
     manifest {
         attributes(
-        // TODO: cambiar
-            'Main-Class': 'proyecto.grupo1.sopaletras'
+            'Main-Class': 'proyecto.grupo1.sopaletras.Main'
         )
     }
 }
