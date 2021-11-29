@@ -1,88 +1,166 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.* ?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml">
-    <center>
-        <GridPane fx:id="tableroJuego" alignment="center">
+<StackPane xmlns:fx="http://javafx.com/fxml">
+   <children>
+      <ImageView fitHeight="735.0" fitWidth="1100.0" opacity="0.37" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/letters_back.jpg" />
+         </image>
+         <effect>
+            <Glow />
+         </effect>
+      </ImageView>
+      <BorderPane maxHeight="735.0" maxWidth="1100.0" minHeight="735.0" minWidth="1100.0" prefHeight="735.0" prefWidth="1100.0">
+          <center>
+              <GridPane fx:id="tableroJuego" alignment="CENTER" prefHeight="570.0" prefWidth="818.0" BorderPane.alignment="CENTER">
         </GridPane>
-    </center>
-    <right>
-        <VBox prefHeight="568.0" prefWidth="177.0">
-            <HBox>
-                <Label prefHeight="35.0" prefWidth="85.0" text="Puntos: " textFill="#3343f2">
-               <font>
-                  <Font size="24.0" />
-               </font></Label>
-                <Label fx:id="lblPuntos" text="0" textFill="#3343f2">
-               <font>
-                  <Font size="24.0" />
-               </font></Label>
-            </HBox>
-            <HBox>
-                <Label prefHeight="35.0" prefWidth="90.0" text="Errores: " textFill="#da2b2b">
-               <font>
-                  <Font size="24.0" />
-               </font></Label>
-                <Label fx:id="lblErrores" text="0" textFill="#da2b2b">
-               <font>
-                  <Font size="24.0" />
-               </font></Label>
-            </HBox>
-            <VBox>
-                <Label>
-               <font>
-                  <Font size="18.0" />
-               </font></Label>
-            <Label>
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-                <VBox fx:id="panelPalabrasValidas" alignment="CENTER" />
-            </VBox>
-         <BorderPane.margin>
-            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-         </BorderPane.margin>
-        </VBox>
-    </right>
-    <bottom>
-        <GridPane alignment="center" hgap="10" vgap="10" BorderPane.alignment="CENTER">
-            <padding><Insets bottom="10" left="25" right="25" top="25" /></padding>
-            <Label text="Fila:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-            <ComboBox fx:id="comboRows" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-
-            <Label text="Columna:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-            <ComboBox fx:id="comboCols" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-
-            <Button fx:id="btnShiftLeft" minWidth="200" onAction="#rotar" text="Rotar a la izquierda" GridPane.columnIndex="2" GridPane.rowIndex="0" />
-            <Button fx:id="btnShiftRight" minWidth="200" onAction="#rotar" text="Rotar a la derecha" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-
-            <Button fx:id="btnAddColumn" minWidth="200" onAction="#anadir" text="Añadir columna" GridPane.columnIndex="3" GridPane.rowIndex="0" />
-            <Button fx:id="btnAddRow" minWidth="200" onAction="#anadir" text="Añadir fila" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-
-            <!-- TODO: anadir onAction -->
-            <Button fx:id="btnDeleteRow" minWidth="200" onAction="#eliminar" text="Eliminar fila" GridPane.columnIndex="4" GridPane.rowIndex="0" />
-            <Button fx:id="btnDeleteColumn" minWidth="200" onAction="#eliminar" text="Eliminar columna" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-         <columnConstraints>
-            <ColumnConstraints />
-            <ColumnConstraints />
-            <ColumnConstraints />
-            <ColumnConstraints />
-            <ColumnConstraints />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints />
-            <RowConstraints />
-         </rowConstraints>
-         <BorderPane.margin>
-            <Insets bottom="20.0" />
-         </BorderPane.margin>
-        </GridPane>
-    </bottom>
-</BorderPane>
+          </center>
+          <right>
+              <VBox prefHeight="530.0" prefWidth="247.0">
+                  <HBox>
+                      <Label prefHeight="35.0" prefWidth="94.0" text="Puntos: " textFill="#3343f2">
+                     <font>
+                        <Font name="System Bold Italic" size="24.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="15.0" />
+                     </HBox.margin>
+                  </Label>
+                      <Label fx:id="lblPuntos" text="0" textFill="#3343f2">
+                     <font>
+                        <Font name="System Bold Italic" size="24.0" />
+                     </font>
+                  </Label>
+                  </HBox>
+                  <HBox>
+                      <Label prefHeight="35.0" prefWidth="98.0" text="Errores: " textFill="#da2b2b">
+                     <font>
+                        <Font name="System Bold Italic" size="24.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="15.0" />
+                     </HBox.margin>
+                  </Label>
+                      <Label fx:id="lblErrores" text="0" textFill="#da2b2b">
+                     <font>
+                        <Font name="System Bold Italic" size="24.0" />
+                     </font>
+                  </Label>
+                  </HBox>
+                  <VBox>
+                      <Label>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                      <VBox fx:id="panelPalabrasValidas" alignment="CENTER" />
+                  </VBox>
+               <BorderPane.margin>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </BorderPane.margin>
+              </VBox>
+          </right>
+          <bottom>
+              <GridPane alignment="CENTER" hgap="10" prefHeight="145.0" prefWidth="1048.0" vgap="10" BorderPane.alignment="CENTER_LEFT">
+                  <padding>
+                  <Insets bottom="10" left="25" right="25" top="25" />
+               </padding>
+                  <Label text="Fila:" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                  <font>
+                     <Font name="System Bold" size="18.0" />
+                  </font>
+               </Label>
+                  <ComboBox fx:id="comboRows" blendMode="EXCLUSION" maxHeight="50.0" minHeight="50.0" prefHeight="50.0" style="-fx-background-radius: 30;" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+      
+                  <Label text="Columna:" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                  <font>
+                     <Font name="System Bold" size="18.0" />
+                  </font>
+               </Label>
+                  <ComboBox fx:id="comboCols" blendMode="EXCLUSION" maxHeight="50.0" minHeight="50.0" prefHeight="50.0" style="-fx-background-radius: 30;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Button fx:id="btnShiftRight" blendMode="EXCLUSION" maxHeight="50.0" maxWidth="200.0" minHeight="50.0" minWidth="200" onAction="#rotar" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 30;" text="Derecha" textFill="#262c10" GridPane.columnIndex="3">
+                  <font>
+                     <Font name="System Bold" size="18.0" />
+                  </font>
+               </Button>
+      
+                  <Button fx:id="btnAddColumn" blendMode="EXCLUSION" maxHeight="50.0" maxWidth="200.0" minHeight="50.0" minWidth="200" onAction="#anadir" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 30;" text="Añadir" textFill="#262c10" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                  <font>
+                     <Font name="System Bold" size="18.0" />
+                  </font>
+               </Button>
+                  <Button fx:id="btnAddRow" blendMode="EXCLUSION" maxHeight="50.0" maxWidth="200.0" minHeight="50.0" minWidth="200" onAction="#anadir" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 30;" text="Añadir" textFill="#262c10" GridPane.columnIndex="4">
+                  <font>
+                     <Font name="System Bold" size="18.0" />
+                  </font>
+               </Button>
+      
+                  <!-- TODO: anadir onAction -->
+                  <Button fx:id="btnDeleteRow" blendMode="EXCLUSION" maxHeight="50.0" maxWidth="200.0" minHeight="50.0" minWidth="200" onAction="#eliminar" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 30;" text="Eliminar" textFill="#262c10" GridPane.columnIndex="5">
+                  <font>
+                     <Font name="System Bold" size="18.0" />
+                  </font>
+               </Button>
+                  <Button fx:id="btnDeleteColumn" blendMode="EXCLUSION" maxHeight="50.0" maxWidth="200.0" minHeight="50.0" minWidth="200" onAction="#eliminar" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 30;" text="Eliminar" textFill="#262c10" GridPane.columnIndex="5" GridPane.rowIndex="1">
+                  <font>
+                     <Font name="System Bold" size="18.0" />
+                  </font>
+               </Button>
+               <Button fx:id="btnShiftDown" blendMode="EXCLUSION" maxHeight="50.0" maxWidth="200.0" minHeight="50.0" minWidth="200" onAction="#rotar" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 30;" text="Abajo" textFill="#262c10" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                  <font>
+                     <Font name="System Bold" size="18.0" />
+                  </font>
+               </Button>
+               <Button fx:id="btnShiftUp" blendMode="EXCLUSION" maxHeight="50.0" maxWidth="200.0" minHeight="50.0" minWidth="200" onAction="#rotar" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 30;" text="Arriba" textFill="#262c10" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                  <font>
+                     <Font name="System Bold" size="18.0" />
+                  </font>
+               </Button>
+               <Button fx:id="btnShiftLeft" blendMode="EXCLUSION" maxHeight="50.0" maxWidth="200.0" minHeight="50.0" minWidth="200" onAction="#rotar" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 30;" text="Izquierda" textFill="#262c10" GridPane.columnIndex="2">
+                  <font>
+                     <Font name="System Bold" size="18.0" />
+                  </font>
+               </Button>
+               <columnConstraints>
+                  <ColumnConstraints />
+                  <ColumnConstraints maxWidth="83.0" minWidth="30.0" prefWidth="54.0" />
+                  <ColumnConstraints maxWidth="223.0" minWidth="170.0" prefWidth="199.0" />
+                  <ColumnConstraints />
+                  <ColumnConstraints />
+                  <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints />
+                  <RowConstraints />
+               </rowConstraints>
+               <BorderPane.margin>
+                  <Insets bottom="20.0" right="60.0" />
+               </BorderPane.margin>
+              </GridPane>
+          </bottom>
+         <StackPane.margin>
+            <Insets />
+         </StackPane.margin>
+      </BorderPane>
+   </children>
+</StackPane>
