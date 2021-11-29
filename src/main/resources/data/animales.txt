@@ -1,6 +1,5 @@
 calamar
 sardinas
-manatí
 pulpo
 arenques
 carpas

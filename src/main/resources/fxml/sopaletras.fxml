@@ -13,45 +13,76 @@
         </GridPane>
     </center>
     <right>
-        <VBox>
+        <VBox prefHeight="568.0" prefWidth="177.0">
             <HBox>
-                <Label text="Puntos: " />
-                <Label fx:id="lblPuntos" text="0" />
+                <Label prefHeight="35.0" prefWidth="85.0" text="Puntos: " textFill="#3343f2">
+               <font>
+                  <Font size="24.0" />
+               </font></Label>
+                <Label fx:id="lblPuntos" text="0" textFill="#3343f2">
+               <font>
+                  <Font size="24.0" />
+               </font></Label>
             </HBox>
             <HBox>
-                <Label text="Errores: " />
-                <Label fx:id="lblErrores" text="0" />
+                <Label prefHeight="35.0" prefWidth="90.0" text="Errores: " textFill="#da2b2b">
+               <font>
+                  <Font size="24.0" />
+               </font></Label>
+                <Label fx:id="lblErrores" text="0" textFill="#da2b2b">
+               <font>
+                  <Font size="24.0" />
+               </font></Label>
             </HBox>
             <VBox>
-                <Label text="Lista de Palabras" />
-                <VBox fx:id="panelPalabrasValidas"></VBox>
+                <Label>
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+            <Label>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+                <VBox fx:id="panelPalabrasValidas" alignment="CENTER" />
             </VBox>
+         <BorderPane.margin>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </BorderPane.margin>
         </VBox>
     </right>
     <bottom>
-        <GridPane alignment="center" hgap="10" vgap="10">
-            <padding><Insets top="25" right="25" bottom="10" left="25"/></padding>
-            <Label text="Fila:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-            <ComboBox fx:id="comboRows" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+        <GridPane alignment="center" hgap="10" vgap="10" BorderPane.alignment="CENTER">
+            <padding><Insets bottom="10" left="25" right="25" top="25" /></padding>
+            <Label text="Fila:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+            <ComboBox fx:id="comboRows" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
-            <Label text="Columna:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-            <ComboBox fx:id="comboCols" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+            <Label text="Columna:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+            <ComboBox fx:id="comboCols" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
-            <Button fx:id="btnShiftLeft" text="Rotar a la izquierda" minWidth="200"
-                GridPane.columnIndex="2" GridPane.rowIndex="0" onAction="#rotar"/>
-            <Button fx:id="btnShiftRight" text="Rotar a la derecha"  minWidth="200"
-                GridPane.columnIndex="2" GridPane.rowIndex="1" onAction="#rotar"/>
+            <Button fx:id="btnShiftLeft" minWidth="200" onAction="#rotar" text="Rotar a la izquierda" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+            <Button fx:id="btnShiftRight" minWidth="200" onAction="#rotar" text="Rotar a la derecha" GridPane.columnIndex="2" GridPane.rowIndex="1" />
 
-            <Button fx:id="btnAddColumn" text="Añadir columna" minWidth="200"
-                GridPane.columnIndex="3" GridPane.rowIndex="0" onAction="#anadir"/>
-            <Button fx:id="btnAddRow" text="Añadir fila" minWidth="200"
-                GridPane.columnIndex="3" GridPane.rowIndex="1" onAction="#anadir"/>
+            <Button fx:id="btnAddColumn" minWidth="200" onAction="#anadir" text="Añadir columna" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+            <Button fx:id="btnAddRow" minWidth="200" onAction="#anadir" text="Añadir fila" GridPane.columnIndex="3" GridPane.rowIndex="1" />
 
             <!-- TODO: anadir onAction -->
-            <Button fx:id="btnDeleteRow" text="Eliminar fila" minWidth="200"
-                GridPane.columnIndex="4" GridPane.rowIndex="0" onAction="#eliminar"/>
-            <Button fx:id="btnDeleteColumn" text="Eliminar columna" minWidth="200"
-                GridPane.columnIndex="4" GridPane.rowIndex="1" onAction="#eliminar"/>
+            <Button fx:id="btnDeleteRow" minWidth="200" onAction="#eliminar" text="Eliminar fila" GridPane.columnIndex="4" GridPane.rowIndex="0" />
+            <Button fx:id="btnDeleteColumn" minWidth="200" onAction="#eliminar" text="Eliminar columna" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+         <columnConstraints>
+            <ColumnConstraints />
+            <ColumnConstraints />
+            <ColumnConstraints />
+            <ColumnConstraints />
+            <ColumnConstraints />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints />
+            <RowConstraints />
+         </rowConstraints>
+         <BorderPane.margin>
+            <Insets bottom="20.0" />
+         </BorderPane.margin>
         </GridPane>
     </bottom>
 </BorderPane>
