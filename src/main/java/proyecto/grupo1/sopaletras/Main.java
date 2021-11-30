@@ -16,7 +16,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            Parent root = loadFXML("/fxml/inicio.fxml");
+            Parent root = loadFXML("/fxml/jugar.fxml");
             Scene scene = new Scene(root, 1100, 735);
             primaryStage.setScene(scene);
             primaryStage.setResizable(false);

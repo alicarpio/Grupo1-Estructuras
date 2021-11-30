@@ -17,9 +17,13 @@ import proyecto.grupo1.sopaletras.modelo.SopaLetras;
 public class ControladorSopa {
     @FXML private Label lblPuntos;
     @FXML private Label lblErrores;
+
     @FXML private Label lblTiempo;
+    @FXML private VBox  vboxTiempo;
+
     @FXML private VBox panelPalabrasValidas;
     @FXML private GridPane tableroJuego;
+    @FXML private BorderPane rootPane;
 
     @FXML private Button btnShiftLeft;
     @FXML private Button btnShiftRight;
@@ -61,8 +65,12 @@ public class ControladorSopa {
         actualizarComboCols();
         actualizarPalabrasValidas();
         actualizarTablero();
-        if (extreme)
+        if (extreme) {
             new Thread(this::timer).start();
+        }
+        else {
+            rootPane.getChildren().remove(vboxTiempo);
+        }
     }
 
     private void timer() {

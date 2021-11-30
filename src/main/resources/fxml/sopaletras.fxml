@@ -26,9 +26,9 @@
                 <Glow />
             </effect>
         </ImageView>
-        <BorderPane maxHeight="735.0" maxWidth="1100.0" minHeight="735.0" minWidth="1100.0" prefHeight="735.0" prefWidth="1100.0">
+        <BorderPane fx:id="rootPane" maxHeight="735.0" maxWidth="1100.0" minHeight="735.0" minWidth="1100.0" prefHeight="735.0" prefWidth="1100.0">
             <left>
-                <VBox>
+                <VBox fx:id="vboxTiempo">
                     <Label prefHeight="53.0" prefWidth="139.0" text="Tiempo:">
                         <font>
                             <Font name="System Bold Italic" size="36.0" />
