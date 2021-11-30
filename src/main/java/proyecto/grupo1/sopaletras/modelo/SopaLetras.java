@@ -207,7 +207,8 @@ public class SopaLetras {
         this.cols = cols;
         random = new Rd();
 
-        List<String> palabras = FS.readFile(getClass().getResource("/data/" + tema + ".txt").toURI());
+        List<String> palabras =
+            FS.readFile(getClass().getResource("/data/" + tema + ".txt").toURI());
         for (int i = 0; i < 10;) {
             String p = random.choice(palabras);
             if (palabrasValidas.indexOf(p) == -1) {
@@ -220,7 +221,8 @@ public class SopaLetras {
         letras = new Vector<>();
         for (String palabra : palabrasValidas) {
             for (char c : palabra.toCharArray()) {
-                letras.pushBack(c);
+                if (letras.indexOf(c) == -1)
+                    letras.pushBack(c);
             }
         }
 
@@ -233,6 +235,40 @@ public class SopaLetras {
                 row.pushBack(cell);
             }
             tablero.pushBack(row);
+        }
+
+        for (int i = 0; i < 10; i++) {
+            String palabra = null;
+            do {
+                palabra = random.choice(palabrasValidas);
+            } while (palabra.length() > rows && palabra.length() > cols);
+
+            int usedRows = 0;
+            int usedCols = 0;
+
+            if (i % 2 == 0) {
+                int nRow;
+                do {
+                    nRow = random.range(rows);
+                } while ((usedRows & nRow) != 0);
+                usedRows |= (1 << nRow);
+                CircularList<Cell> row = tablero.get(nRow);
+                int n = palabra.length();
+                for (int j = random.range(cols - n), k = 0; k < n; j++, k++)
+                    row.get(j).setLetter(palabra.charAt(k));
+            }
+            else {
+                int nCol;
+                do {
+                    nCol = random.range(cols);
+                } while ((usedCols & nCol) != 0);
+                usedCols |= (1 << nCol);
+                int n = palabra.length();
+                for (int j = random.range(rows - n), k = 0; k < n; j++, k++) {
+                    Cell cell = tablero.get(j).get(nCol);
+                    cell.setLetter(palabra.charAt(k));
+                }
+            }
         }
     }
 

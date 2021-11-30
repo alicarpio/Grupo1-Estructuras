@@ -17,6 +17,7 @@ import proyecto.grupo1.sopaletras.modelo.SopaLetras;
 public class ControladorSopa {
     @FXML private Label lblPuntos;
     @FXML private Label lblErrores;
+    @FXML private Label lblTiempo;
     @FXML private VBox panelPalabrasValidas;
     @FXML private GridPane tableroJuego;
 
@@ -35,17 +36,19 @@ public class ControladorSopa {
     final static int MAX_ERRORES = 3;
     final static int MAX_MODIFICACIONES = 2;
 
+    private boolean extreme;
     private int numeroModificaciones;
     private SopaLetras sopaLetras;
     private SelectionState selectionState;
 
     public ControladorSopa(int N) {
-        this(N, "animales");
+        this(N, "animales", false);
     }
 
-    public ControladorSopa(int N, String tema) {
+    public ControladorSopa(int N, String tema, boolean extreme) {
          try {
             sopaLetras = new SopaLetras(N, N, tema);
+            this.extreme = extreme;
         } catch (Exception ex) {
             notifyError(ex.getMessage(), true);
             ex.printStackTrace();
@@ -58,6 +61,20 @@ public class ControladorSopa {
         actualizarComboCols();
         actualizarPalabrasValidas();
         actualizarTablero();
+        if (extreme)
+            new Thread(this::timer).start();
+    }
+
+    private void timer() {
+        while (true) {
+            try {
+                int tiempo = Integer.parseInt(lblTiempo.getText());
+                if (tiempo <= 0) break;
+                Platform.runLater(() -> lblTiempo.setText(String.valueOf(tiempo - 1)));
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {}
+        }
+        Platform.runLater(() -> showMessage("Se te acabo el tiempo jaja xd", true));
     }
 
     private void actualizarComboN(ComboBox<Integer> combo, int N) {

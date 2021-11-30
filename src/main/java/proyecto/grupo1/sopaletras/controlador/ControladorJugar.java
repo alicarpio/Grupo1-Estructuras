@@ -18,6 +18,8 @@ public class ControladorJugar {
     private ComboBox<String> comboTema;
     @FXML
     private Button btnJugar;
+    @FXML
+    private Button btnExtreme;
 
     @FXML
     private void initialize() {
@@ -27,7 +29,7 @@ public class ControladorJugar {
         comboDim.getItems().add("18 x 18");
         comboDim.getItems().add("20 x 20");
         comboDim.setValue("12 x 12");
-        
+
         comboTema.getItems().add("ANIMALES");
         comboTema.getItems().add("CIUDADES");
         comboTema.getItems().add("HARRY-POTTER");
@@ -39,7 +41,7 @@ public class ControladorJugar {
     private int parseTamanioSopa() {
         return Integer.parseInt(comboDim.getValue().split("x")[0].trim());
     }
-    
+
     private String parseTemaSopa() {
         return comboTema.getValue().toLowerCase();
     }
@@ -47,14 +49,17 @@ public class ControladorJugar {
     @FXML
     private void onJugar(ActionEvent e) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/sopaletras.fxml"));
-        ControladorSopa controladorSopa = new ControladorSopa(parseTamanioSopa(), parseTemaSopa());
+
+        ControladorSopa controladorSopa =
+            new ControladorSopa(parseTamanioSopa(), parseTemaSopa(), e.getTarget() == btnExtreme);
+
         loader.setController(controladorSopa);
         Parent root = loader.load();
         Scene oldScene = btnJugar.getScene();
         Stage theStage = (Stage)oldScene.getWindow();
         theStage.setScene(new Scene(root, oldScene.getWidth(), oldScene.getHeight()));
     }
-    
+
     @FXML
     private void onSalir(ActionEvent e) {
         Platform.exit();

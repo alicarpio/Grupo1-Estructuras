@@ -64,38 +64,21 @@ public class CircularList<T> implements List<T> {
         size++;
         return this;
     }
-    
-//    @Override
-//    public List<T> pushIn(T elem, int index) { // [1, 2, 3, 4, 5]
-//        Node newNode = new Node(elem);
-//        Node ptr = last;
-//        
-//        for (int i = 0 ; i < index ; i++) {
-//            ptr = ptr.next;
-//        }
-//        
-//        Node after = ptr.next;
-//        
-//        ptr.next = newNode;
-//        newNode.next = after;
-//        
-//        return this;
-//    }
-    
+
     @Override
     public List<T> replace(T elem, int index) {
         Node newNode = new Node(elem);
         Node ptr = last;
-        
+
         for (int i = 0 ; i < index ; i++) {
             ptr = ptr.next;
         }
-        
+
         Node after = ptr.next.next;
-        
+
         ptr.next = newNode;
         newNode.next = after;
-        
+
         return this;
     }
 

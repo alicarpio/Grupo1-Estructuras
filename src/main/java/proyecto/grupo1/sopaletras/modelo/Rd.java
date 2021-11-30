@@ -19,4 +19,8 @@ public class Rd {
         int index = random.nextInt(len);
         return source.get(index);
     }
+
+    public int range(int bound) {
+        return random.nextInt(bound);
+    }
 }

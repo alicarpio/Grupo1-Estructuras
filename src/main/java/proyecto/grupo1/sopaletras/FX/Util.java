@@ -31,6 +31,17 @@ public class Util {
         notifyError(msg, false);
     }
 
+    public static void showMessage(String msg, boolean shouldExit) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION, msg);
+        alert.showAndWait();
+        if (shouldExit)
+            Platform.exit();
+    }
+
+    public static void showMessage(String msg) {
+        showMessage(msg, false);
+    }
+
     @SafeVarargs
     public static <T> T makeComboPopup(String title, T... options) {
         Stage popup = new Stage();

@@ -28,6 +28,10 @@ public class Cell {
         return marked;
     }
 
+    public void setLetter(char letter) {
+        this.letter = letter;
+    }
+
     public void setMarked(boolean marked) {
         this.marked = marked;
     }
