@@ -34,6 +34,7 @@ public class ControladorJugar {
         comboTema.getItems().add("CIUDADES");
         comboTema.getItems().add("HARRY-POTTER");
         comboTema.getItems().add("MARVEL");
+        comboTema.getItems().add("NUMEROS");
         comboTema.getItems().add("DC");
         comboTema.setValue("ANIMALES");
     }

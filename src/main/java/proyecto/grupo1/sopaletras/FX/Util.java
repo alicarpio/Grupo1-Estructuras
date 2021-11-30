@@ -1,17 +1,12 @@
 package proyecto.grupo1.sopaletras.FX;
 
-import javafx.scene.*;
-import javafx.stage.*;
+import java.util.Random;
 import javafx.application.Platform;
-import javafx.scene.layout.*;
+import javafx.scene.*;
 import javafx.scene.control.*;
-import javafx.scene.text.*;
-import javafx.geometry.*;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-
-import java.util.concurrent.atomic.AtomicReference;
-
-import proyecto.grupo1.sopaletras.DS.List;
+import javafx.stage.*;
 
 public class Util {
     public static void notifyError(String msg, boolean shouldExit) {
@@ -56,5 +51,13 @@ public class Util {
         popup.showAndWait();
 
         return txtField.getText();
+    }
+    
+    public static Color randomColor() {
+        Random random = new Random(); // Probably really put this somewhere where it gets executed only once
+        int red = random.nextInt(200);
+        int green = random.nextInt(200);
+        int blue = random.nextInt(200);
+        return Color.rgb(red, green, blue);
     }
 }
