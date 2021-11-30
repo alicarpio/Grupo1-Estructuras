@@ -6,5 +6,5 @@
 - [x] Sopa de letras con distinta tematica
 - [x] Tachar palabras que son encontradas
 - [x] Modo "extreme" con temporizador
-- [ ] Sobreescribir algunas letras del tablero
+- [x] Sobreescribir algunas letras del tablero
 - [ ] Variante de sopa numerica

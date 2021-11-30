@@ -8,6 +8,8 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.*;
+import javafx.scene.input.MouseButton;
+
 import proyecto.grupo1.sopaletras.DS.List;
 import proyecto.grupo1.sopaletras.FX.Util;
 import static proyecto.grupo1.sopaletras.FX.Util.*;
@@ -108,12 +110,24 @@ public class ControladorSopa {
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
                 Cell cell = tablero.get(i).get(j);
-                Text t = makeText(String.valueOf(cell.getLetter()), rows);
+                Text t = new Text(String.valueOf(cell.getLetter()));
+                t.setFont(Font.font(null, FontWeight.BOLD, 280.0 / rows));
                 StackPane pane = new StackPane(t);
                 pane.setAlignment(Pos.CENTER);
                 if (cell.isMarked())
                     pane.setBackground(new Background(new BackgroundFill(Color.AQUAMARINE, null, null)));
-                pane.setOnMouseClicked(e -> handleMouseClick(cell));
+                pane.setOnMouseClicked(e -> {
+                    if (e.getButton() == MouseButton.SECONDARY) {
+                        if (!cell.isMarked()) {
+                            String newLetter = input("Ingrese la letra nueva");
+                            cell.setLetter(newLetter.charAt(0));
+                            actualizarTablero();
+                        }
+                    }
+                    else {
+                        handleMouseClick(cell);
+                    }
+                });
                 GridPane.setMargin(pane, new Insets(5, 10, 5, 10));
                 tableroJuego.add(pane, j, i);
             }
