@@ -7,4 +7,4 @@
 - [x] Tachar palabras que son encontradas
 - [x] Modo "extreme" con temporizador
 - [x] Sobreescribir algunas letras del tablero
-- [ ] Variante de sopa numerica
+- [x] Variante de sopa numerica
