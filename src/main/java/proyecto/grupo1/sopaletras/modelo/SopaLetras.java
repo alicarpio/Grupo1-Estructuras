@@ -129,20 +129,20 @@ public class SopaLetras {
         CircularList<Cell> column = new CircularList();
         
         for (int i = 0 ; i < rows ; i++) {
-            column.pushBack(tablero.get(i).get(col-1));
+            column.pushBack(tablero.get(i).get(col));
         } 
         
         switch (direccion) {
             case "up":
                 column.shiftLeft();
                 for (int i = 0 ; i < rows ; i++) {
-                    tablero.get(i).replace(column.get(i), col-1);
+                    tablero.get(i).replace(column.get(i), col);
                 }
                 break;
             case "down":
                 column.shiftRight();
                 for (int i = 0 ; i < rows ; i++) {
-                    tablero.get(i).replace(column.get(i), col-1);  
+                    tablero.get(i).replace(column.get(i), col);  
                 }
                 break;
             default:
@@ -150,7 +150,7 @@ public class SopaLetras {
         }
         
         for (int j = 0; j < tablero.size(); j++) {           
-            Cell cell = tablero.get(j).get(col-1);
+            Cell cell = tablero.get(j).get(col);
             cell.setRow(j);
             cell.setCol(col);            
         }

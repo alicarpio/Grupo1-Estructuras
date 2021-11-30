@@ -5,11 +5,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.*;
 import javafx.geometry.*;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.*;
-import javafx.scene.input.MouseButton;
-
 import proyecto.grupo1.sopaletras.DS.List;
 import proyecto.grupo1.sopaletras.FX.Util;
 import static proyecto.grupo1.sopaletras.FX.Util.*;
@@ -19,7 +18,9 @@ import proyecto.grupo1.sopaletras.modelo.SopaLetras;
 public class ControladorSopa {
     @FXML private Label lblPuntos;
     @FXML private Label lblErrores;
+    
 
+    @FXML private VBox vboxL;
     @FXML private Label lblTiempo;
     @FXML private VBox  vboxTiempo;
 
@@ -71,7 +72,7 @@ public class ControladorSopa {
             new Thread(this::timer).start();
         }
         else {
-            rootPane.getChildren().remove(vboxTiempo);
+            vboxL.getChildren().remove(vboxTiempo);
         }
     }
 
@@ -119,7 +120,7 @@ public class ControladorSopa {
                 pane.setOnMouseClicked(e -> {
                     if (e.getButton() == MouseButton.SECONDARY) {
                         if (!cell.isMarked()) {
-                            String newLetter = input("Ingrese la letra nueva");
+                            String newLetter = input("Cambiar por: ");
                             cell.setLetter(newLetter.charAt(0));
                             actualizarTablero();
                         }
@@ -202,6 +203,7 @@ public class ControladorSopa {
         for (String palabra : palabrasMarcadas) {
             Text t = new Text(palabra);
             t.setFont(Font.font(24));
+            t.setFill(Color.DARKOLIVEGREEN);
             t.setStrikethrough(true);
             panelPalabrasValidas.getChildren().add(t);
         }
@@ -217,7 +219,7 @@ public class ControladorSopa {
     @FXML
     private void rotarVert(ActionEvent e) {
         sopaLetras.rotarCol(e.getTarget() == btnShiftUp ? "up" : "down",
-                comboCols.getValue());
+                comboCols.getValue()-1);
         actualizarTablero();
     }
 

@@ -28,35 +28,44 @@
         </ImageView>
         <BorderPane fx:id="rootPane" maxHeight="735.0" maxWidth="1100.0" minHeight="735.0" minWidth="1100.0" prefHeight="735.0" prefWidth="1100.0">
             <left>
-                <VBox fx:id="vboxTiempo">
-                    <Label prefHeight="53.0" prefWidth="139.0" text="Tiempo:">
-                        <font>
-                            <Font name="System Bold Italic" size="36.0" />
-                        </font>
-                        <VBox.margin>
-                            <Insets left="15.0" />
-                        </VBox.margin>
-                    </Label>
-                    <Label fx:id="lblTiempo" prefHeight="53.0" prefWidth="139.0" text="30">
-                        <font>
-                            <Font name="System Bold Italic" size="36.0" />
-                        </font>
-                        <VBox.margin>
-                            <Insets left="15.0" />
-                        </VBox.margin>
-                    </Label>
-                </VBox>
+            <VBox fx:id="vboxL" alignment="CENTER" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" spacing="5.0" BorderPane.alignment="CENTER">
+               <children>
+                  <VBox fx:id="panelPalabrasValidas" alignment="CENTER" spacing="5.0" />
+                      <VBox fx:id="vboxTiempo" alignment="CENTER" maxWidth="200.0" minWidth="200.0" prefWidth="200.0">
+                     <Label />
+                          <Label alignment="CENTER" prefHeight="53.0" prefWidth="139.0" text="Tiempo:">
+                              <font>
+                                  <Font name="System Bold Italic" size="24.0" />
+                              </font>
+                              <VBox.margin>
+                                  <Insets left="15.0" />
+                              </VBox.margin>
+                          </Label>
+                          <Label fx:id="lblTiempo" alignment="CENTER" prefHeight="53.0" prefWidth="139.0" text="30" textFill="#da2b2b">
+                              <font>
+                                  <Font name="System Bold Italic" size="24.0" />
+                              </font>
+                              <VBox.margin>
+                                  <Insets left="15.0" />
+                              </VBox.margin>
+                          </Label>
+                      </VBox>
+               </children>
+               <BorderPane.margin>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </BorderPane.margin>
+            </VBox>
             </left>
             <center>
                 <GridPane fx:id="tableroJuego" alignment="CENTER" prefHeight="570.0" prefWidth="818.0" BorderPane.alignment="CENTER">
                 </GridPane>
             </center>
             <right>
-                <VBox prefHeight="530.0" prefWidth="247.0">
-                    <HBox>
-                        <Label prefHeight="53.0" prefWidth="139.0" text="Puntos: " textFill="#3343f2">
+                <VBox alignment="CENTER" maxWidth="200.0" minWidth="200.0" prefHeight="572.0" prefWidth="200.0">
+                    <HBox alignment="CENTER_LEFT">
+                        <Label contentDisplay="CENTER" prefHeight="53.0" prefWidth="139.0" text="Puntos: " textFill="#3343f2">
                             <font>
-                                <Font name="System Bold Italic" size="36.0" />
+                                <Font name="System Bold Italic" size="24.0" />
                             </font>
                             <HBox.margin>
                                 <Insets left="15.0" />
@@ -64,14 +73,14 @@
                         </Label>
                         <Label fx:id="lblPuntos" text="0" textFill="#3343f2">
                             <font>
-                                <Font name="System Bold Italic" size="36.0" />
+                                <Font name="System Bold Italic" size="24.0" />
                             </font>
                         </Label>
                     </HBox>
-                    <HBox>
+                    <HBox alignment="CENTER_LEFT">
                         <Label prefHeight="53.0" prefWidth="139.0" text="Errores: " textFill="#da2b2b">
                             <font>
-                                <Font name="System Bold Italic" size="36.0" />
+                                <Font name="System Bold Italic" size="24.0" />
                             </font>
                             <HBox.margin>
                                 <Insets left="15.0" />
@@ -79,26 +88,10 @@
                         </Label>
                         <Label fx:id="lblErrores" text="0" textFill="#da2b2b">
                             <font>
-                                <Font name="System Bold Italic" size="36.0" />
+                                <Font name="System Bold Italic" size="24.0" />
                             </font>
                         </Label>
                     </HBox>
-                    <VBox>
-                        <Label>
-                            <font>
-                                <Font size="18.0" />
-                            </font>
-                        </Label>
-                        <Label>
-                            <font>
-                                <Font size="18.0" />
-                            </font>
-                        </Label>
-                        <VBox fx:id="panelPalabrasValidas" alignment="CENTER" />
-                        <VBox.margin>
-                            <Insets right="10.0" />
-                        </VBox.margin>
-                    </VBox>
                     <Button blendMode="EXCLUSION" maxHeight="50.0" maxWidth="150.0" minHeight="50.0" minWidth="150.0" onAction="#onSalir" prefHeight="50.0" prefWidth="150.0" style="-fx-background-radius: 30;" text="Salir" textFill="#262c10">
                         <font>
                             <Font name="System Bold" size="18.0" />
