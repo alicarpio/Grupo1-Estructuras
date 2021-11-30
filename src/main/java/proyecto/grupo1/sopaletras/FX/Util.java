@@ -21,15 +21,17 @@ public class Util {
         notifyError(msg, false);
     }
 
-    public static void showMessage(String msg, boolean shouldExit) {
+    public static void showMessage(String title, String msg, boolean shouldExit) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION, msg);
+        alert.setTitle(title);
+        alert.setHeaderText(title);
         alert.showAndWait();
         if (shouldExit)
             Platform.exit();
     }
 
-    public static void showMessage(String msg) {
-        showMessage(msg, false);
+    public static void showMessage(String title, String msg) {
+        showMessage(title, msg, false);
     }
 
     public static String input(String prompt) {
@@ -40,7 +42,7 @@ public class Util {
 
         Label lbl = new Label(prompt);
         lbl.setFont(Font.font("System", FontWeight.NORMAL, 18));
-        
+
         TextField txtField = new TextField();
         txtField.setPrefHeight(50);
         txtField.setPrefWidth(100);
