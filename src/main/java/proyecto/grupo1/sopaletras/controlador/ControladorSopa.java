@@ -119,8 +119,8 @@ public class ControladorSopa {
                     pane.setBackground(new Background(new BackgroundFill(Color.AQUAMARINE, null, null)));
                 pane.setOnMouseClicked(e -> {
                     if (e.getButton() == MouseButton.SECONDARY) {
-                        if (!cell.isMarked()) {
-                            String newLetter = input("Cambiar por: ");
+                        String newLetter = input("Cambiar por: ");
+                        if (!cell.isMarked() && !newLetter.isEmpty()) {
                             cell.setLetter(newLetter.charAt(0));
                             actualizarTablero();
                         }
