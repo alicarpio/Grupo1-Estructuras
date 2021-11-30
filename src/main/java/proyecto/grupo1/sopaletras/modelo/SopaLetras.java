@@ -200,7 +200,7 @@ public class SopaLetras {
         rows--;
     }
 
-    public SopaLetras(int rows, int cols, String tema) throws Exception {
+    public SopaLetras(int rows, int cols, String tema, String idioma) throws Exception {
         palabrasValidas  = new Vector<>();
         palabrasMarcadas = new Vector<>();
         this.rows = rows;
@@ -208,7 +208,8 @@ public class SopaLetras {
         random = new Rd();
 
         List<String> palabras =
-            FS.readFile(getClass().getResource("/data/" + tema + ".txt").toURI());
+            FS.readFile(getClass().getResource("/data/" + 
+                    (idioma.equals("Español")?"espanol/":"ingles/") + tema + ".txt").toURI());
         for (int i = 0; i < 10;) {
             String p = random.choice(palabras);
             if (palabrasValidas.indexOf(p) == -1) {
@@ -273,7 +274,7 @@ public class SopaLetras {
     }
 
     public SopaLetras(int rows, int cols) throws Exception {
-        this(rows, cols, "animales");
+        this(rows, cols, "animales","espanol");
     }
 
     public SopaLetras() throws Exception {

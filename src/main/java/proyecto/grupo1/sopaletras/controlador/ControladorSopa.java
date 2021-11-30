@@ -47,13 +47,10 @@ public class ControladorSopa {
     private SopaLetras sopaLetras;
     private SelectionState selectionState;
 
-    public ControladorSopa(int N) {
-        this(N, "animales", false);
-    }
 
-    public ControladorSopa(int N, String tema, boolean extreme) {
+    public ControladorSopa(int N, String tema, boolean extreme, String idioma ) {
          try {
-            sopaLetras = new SopaLetras(N, N, tema);
+            sopaLetras = new SopaLetras(N, N, tema,idioma);
             this.extreme = extreme;
         } catch (Exception ex) {
             notifyError(ex.getMessage(), true);
