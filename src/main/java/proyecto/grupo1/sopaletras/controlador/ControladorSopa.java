@@ -168,11 +168,12 @@ public class ControladorSopa {
             decrementarPuntaje(palabra);
         }
 
+        if (selectionState.getSelectionStart() == selectionState.getSelectionEnd())
+            selectionState.getSelectionStart().setMarked(false);
+
         // Caso contrario, si la palabra no ha sido marcada con
         // anterioridad desmarcamos la primera celda de la seleccion
-        if (!sopaLetras.marcada(palabra)
-                && !selectionState.getSelectionEnd().isMarked()
-                || selectionState.getSelectionStart() == selectionState.getSelectionEnd()) {
+        if (!selectionState.getSelectionEnd().isMarked()) {
             selectionState.getSelectionStart().setMarked(false);
         }
 
