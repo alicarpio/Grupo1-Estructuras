@@ -86,7 +86,8 @@ public class ControladorSopa {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {}
         }
-        Platform.runLater(() -> showMessage("Se te acabo el tiempo jaja xd", true));
+        Platform.runLater(() -> showMessage("GAME OVER", "Se te acabo el tiempo! Lograste marcar " +
+                    sopaLetras.getPalabrasMarcadas().size() + " palabras", true));
     }
 
     private void actualizarComboN(ComboBox<Integer> combo, int N) {
@@ -173,6 +174,15 @@ public class ControladorSopa {
                 && !selectionState.getSelectionEnd().isMarked()
                 || selectionState.getSelectionStart() == selectionState.getSelectionEnd()) {
             selectionState.getSelectionStart().setMarked(false);
+        }
+
+        checkVictory();
+    }
+
+    private void checkVictory() {
+        int nMarcadas = sopaLetras.getPalabrasMarcadas().size();
+        if (nMarcadas == 10) {
+            showMessage("VICTORIA", "Felicidades, has encontrado todas las palabras!", true);
         }
     }
 
