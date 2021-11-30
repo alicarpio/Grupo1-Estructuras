@@ -142,11 +142,17 @@ public class SopaLetras {
             case "down":
                 column.shiftRight();
                 for (int i = 0 ; i < rows ; i++) {
-                    tablero.get(i).replace(column.get(i), col-1);
+                    tablero.get(i).replace(column.get(i), col-1);  
                 }
                 break;
             default:
                 throw new RuntimeException("Invalid rotation direction: " + direccion);
+        }
+        
+        for (int j = 0; j < tablero.size(); j++) {           
+            Cell cell = tablero.get(j).get(col-1);
+            cell.setRow(j);
+            cell.setCol(col);            
         }
     }
 
