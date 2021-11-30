@@ -18,7 +18,6 @@ import proyecto.grupo1.sopaletras.modelo.SopaLetras;
 public class ControladorSopa {
     @FXML private Label lblPuntos;
     @FXML private Label lblErrores;
-    
 
     @FXML private VBox vboxL;
     @FXML private Label lblTiempo;
@@ -69,7 +68,9 @@ public class ControladorSopa {
         actualizarPalabrasValidas();
         actualizarTablero();
         if (extreme) {
-            new Thread(this::timer).start();
+            Thread th = new Thread(this::timer);
+            th.setDaemon(true);
+            th.start();
         }
         else {
             vboxL.getChildren().remove(vboxTiempo);
