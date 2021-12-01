@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="735.0" maxWidth="1100.0" minHeight="735.0" minWidth="1100.0" prefHeight="735.0" prefWidth="1100.0" xmlns:fx="http://javafx.com/fxml" fx:controller="proyecto.grupo1.sopaletras.controlador.ControladorJugar">
+<StackPane maxHeight="735.0" maxWidth="1100.0" minHeight="735.0" minWidth="1100.0" prefHeight="735.0" prefWidth="1100.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17" fx:controller="proyecto.grupo1.sopaletras.controlador.ControladorJugar">
    <children>
       <ImageView fitHeight="735.0" fitWidth="1100.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -23,7 +23,7 @@
          <center>
             <VBox alignment="CENTER" spacing="20.0">
                <children>
-                  <HBox alignment="CENTER">
+                  <HBox alignment="CENTER" maxWidth="500.0" spacing="10.0">
                      <children>
                         <VBox alignment="CENTER">
                            <children>
@@ -31,11 +31,17 @@
                                  <font>
                                     <Font name="System Bold" size="24.0" />
                                  </font>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
                               </Label>
-                              <ComboBox fx:id="comboDim" maxHeight="50.0" maxWidth="130.0" minHeight="50.0" minWidth="130.0" prefHeight="50.0" prefWidth="130.0" style="-fx-background-radius: 10;" />
+                              <ComboBox fx:id="comboDim" maxHeight="50.0" maxWidth="136.0" minHeight="49.0" minWidth="130.0" prefHeight="49.0" prefWidth="136.0" style="-fx-background-radius: 10;">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin></ComboBox>
                            </children>
                            <HBox.margin>
-                              <Insets right="10.0" />
+                              <Insets />
                            </HBox.margin>
                         </VBox>
                         <VBox alignment="CENTER">
@@ -44,12 +50,32 @@
                                  <font>
                                     <Font name="System Bold" size="24.0" />
                                  </font>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
                               </Label>
-                              <ComboBox fx:id="comboTema" maxHeight="50.0" maxWidth="130.0" minHeight="50.0" minWidth="130.0" prefHeight="50.0" prefWidth="130.0" style="-fx-background-radius: 10;" />
+                              <ComboBox fx:id="comboTema" maxHeight="50.0" maxWidth="130.0" minHeight="50.0" minWidth="130.0" prefHeight="50.0" prefWidth="130.0" style="-fx-background-radius: 10;">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin></ComboBox>
                            </children>
                            <HBox.margin>
-                              <Insets left="10.0" />
+                              <Insets />
                            </HBox.margin>
+                        </VBox>
+                        <VBox alignment="CENTER" layoutX="322.0" layoutY="10.0">
+                           <children>
+                              <Label alignment="CENTER" blendMode="DARKEN" contentDisplay="CENTER" prefHeight="35.0" prefWidth="228.0" text="Idioma " textFill="#806e16">
+                                 <font>
+                                    <Font name="System Bold" size="24.0" />
+                                 </font>
+                              </Label>
+                              <ComboBox fx:id="comboIdioma" maxHeight="50.0" maxWidth="130.0" minHeight="50.0" minWidth="130.0" prefHeight="50.0" prefWidth="130.0" style="-fx-background-radius: 10;">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </ComboBox>
+                           </children>
                         </VBox>
                      </children>
                   </HBox>
@@ -69,6 +95,9 @@
                      </font>
                   </Button>
                </children>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
             </VBox>
          </center>
       </BorderPane>

@@ -14,12 +14,18 @@ import javafx.stage.Stage;
 public class ControladorJugar {
     @FXML
     private ComboBox<String> comboDim;
-     @FXML
+    @FXML
     private ComboBox<String> comboTema;
+    
+    @FXML
+    private ComboBox<String> comboIdioma;
+    
     @FXML
     private Button btnJugar;
     @FXML
     private Button btnExtreme;
+    
+    
 
     @FXML
     private void initialize() {
@@ -37,6 +43,10 @@ public class ControladorJugar {
         comboTema.getItems().add("NUMEROS");
         comboTema.getItems().add("DC");
         comboTema.setValue("ANIMALES");
+        
+        comboIdioma.getItems().add("Español");
+        comboIdioma.getItems().add("Ingles");
+        comboIdioma.setValue("Español");
     }
 
     private int parseTamanioSopa() {
@@ -51,8 +61,10 @@ public class ControladorJugar {
     private void onJugar(ActionEvent e) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/sopaletras.fxml"));
 
+  
         ControladorSopa controladorSopa =
-            new ControladorSopa(parseTamanioSopa(), parseTemaSopa(), e.getTarget() == btnExtreme);
+            new ControladorSopa(parseTamanioSopa(), parseTemaSopa(), e.getTarget() == btnExtreme,
+            comboIdioma.getValue());
 
         loader.setController(controladorSopa);
         Parent root = loader.load();
