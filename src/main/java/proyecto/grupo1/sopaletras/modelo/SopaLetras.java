@@ -214,7 +214,7 @@ public class SopaLetras {
         random = new Rd();
 
         String path = String.format("/data/%s/%s.txt",
-                idioma.equals("Español") ? "espanol/" : "ingles/", tema);
+                idioma.equals("EspaÃ±ol") ? "espanol/" : "ingles/", tema);
         List<String> palabras = FS.readFile(getClass().getResource(path).toURI());
 
         for (int i = 0; i < 10;) {
