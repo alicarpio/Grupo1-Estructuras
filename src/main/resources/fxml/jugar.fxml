@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="735.0" maxWidth="1100.0" minHeight="735.0" minWidth="1100.0" prefHeight="735.0" prefWidth="1100.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17" fx:controller="proyecto.grupo1.sopaletras.controlador.ControladorJugar">
+<StackPane maxHeight="735.0" maxWidth="1100.0" minHeight="735.0" minWidth="1100.0" prefHeight="735.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyecto.grupo1.sopaletras.controlador.ControladorJugar">
    <children>
       <ImageView fitHeight="735.0" fitWidth="1100.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -25,9 +25,9 @@
                <children>
                   <HBox alignment="CENTER" maxWidth="500.0" spacing="10.0">
                      <children>
-                        <VBox alignment="CENTER">
+                        <VBox alignment="CENTER" spacing="10.0">
                            <children>
-                              <Label alignment="CENTER" blendMode="DARKEN" contentDisplay="CENTER" prefHeight="35.0" prefWidth="228.0" text="Tamaño" textFill="#806e16">
+                              <Label alignment="CENTER" blendMode="DARKEN" contentDisplay="CENTER" prefHeight="35.0" prefWidth="130.0" style="-fx-background-color: black; -fx-background-radius: 10;" text="Tamaño" textFill="#cda630">
                                  <font>
                                     <Font name="System Bold" size="24.0" />
                                  </font>
@@ -44,9 +44,9 @@
                               <Insets />
                            </HBox.margin>
                         </VBox>
-                        <VBox alignment="CENTER">
+                        <VBox alignment="CENTER" spacing="10.0">
                            <children>
-                              <Label alignment="CENTER" blendMode="DARKEN" contentDisplay="CENTER" prefHeight="35.0" prefWidth="228.0" text="Tema" textFill="#806e16">
+                              <Label alignment="CENTER" blendMode="DARKEN" contentDisplay="CENTER" prefHeight="35.0" prefWidth="130.0" style="-fx-background-radius: 10; -fx-background-color: black;" text="Tema" textFill="#cda630">
                                  <font>
                                     <Font name="System Bold" size="24.0" />
                                  </font>
@@ -63,9 +63,9 @@
                               <Insets />
                            </HBox.margin>
                         </VBox>
-                        <VBox alignment="CENTER" layoutX="322.0" layoutY="10.0">
+                        <VBox alignment="CENTER" layoutX="322.0" layoutY="10.0" spacing="10.0">
                            <children>
-                              <Label alignment="CENTER" blendMode="DARKEN" contentDisplay="CENTER" prefHeight="35.0" prefWidth="228.0" text="Idioma " textFill="#806e16">
+                              <Label alignment="CENTER" blendMode="DARKEN" contentDisplay="CENTER" prefHeight="35.0" prefWidth="130.0" style="-fx-background-color: black; -fx-background-radius: 10;" text="Idioma " textFill="#cda630">
                                  <font>
                                     <Font name="System Bold" size="24.0" />
                                  </font>
@@ -79,7 +79,7 @@
                         </VBox>
                      </children>
                   </HBox>
-                  <Button fx:id="btnJugar" alignment="CENTER" blendMode="DIFFERENCE" contentDisplay="CENTER" maxHeight="50.0" maxWidth="200" minHeight="50.0" minWidth="200.0" onAction="#onJugar" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 30;" text="Jugar" textFill="#002480">
+                  <Button fx:id="btnJugar" alignment="CENTER" blendMode="DIFFERENCE" contentDisplay="CENTER" maxHeight="50.0" maxWidth="200" minHeight="50.0" minWidth="200.0" onAction="#onJugar" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 30; -fx-effect: 10px;" text="Jugar" textFill="#002480">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>

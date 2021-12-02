@@ -44,9 +44,9 @@ public class ControladorJugar {
         comboTema.getItems().add("DC");
         comboTema.setValue("ANIMALES");
         
-        comboIdioma.getItems().add("EspaÃ±ol");
+        comboIdioma.getItems().add("Español");
         comboIdioma.getItems().add("Ingles");
-        comboIdioma.setValue("EspaÃ±ol");
+        comboIdioma.setValue("Español");
     }
 
     private int parseTamanioSopa() {
