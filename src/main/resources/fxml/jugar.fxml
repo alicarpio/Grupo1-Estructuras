@@ -79,7 +79,7 @@
                         </VBox>
                      </children>
                   </HBox>
-                  <Button fx:id="btnJugar" alignment="CENTER" blendMode="DIFFERENCE" contentDisplay="CENTER" maxHeight="50.0" maxWidth="200" minHeight="50.0" minWidth="200.0" onAction="#onJugar" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 30; -fx-effect: 10px;" text="Jugar" textFill="#002480">
+                  <Button fx:id="btnJugar" alignment="CENTER" blendMode="DIFFERENCE" contentDisplay="CENTER" maxHeight="50.0" maxWidth="200" minHeight="50.0" minWidth="200.0" onAction="#onJugar" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 30;" text="Jugar" textFill="#002480">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>

@@ -83,8 +83,11 @@ public class ControladorSopa {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {}
         }
-        Platform.runLater(() -> showMessage("GAME OVER", "Se te acabo el tiempo! Lograste marcar " +
-                    sopaLetras.getPalabrasMarcadas().size() + " palabras", true));
+        Platform.runLater(() -> {
+            showMessage("GAME OVER", "Se te acabo el tiempo! Lograste marcar " +
+                    sopaLetras.getPalabrasMarcadas().size() + " palabras");
+            cargarVistaInicio(tableroJuego.getScene());
+        });
     }
 
     private void actualizarComboN(ComboBox<Integer> combo, int N) {
@@ -118,7 +121,7 @@ public class ControladorSopa {
                     pane.setBackground(new Background(new BackgroundFill(Color.AQUAMARINE, null, null)));
                 pane.setOnMouseClicked(e -> {
                     if (e.getButton() == MouseButton.SECONDARY) {
-                        String newLetter = input("Cambiar por: ");
+                        String newLetter = input("Cambiar por: ").toUpperCase();
                         if (!cell.isMarked() && !newLetter.isEmpty()) {
                             cell.setLetter(newLetter.charAt(0));
                             actualizarTablero();
@@ -163,6 +166,7 @@ public class ControladorSopa {
         else {
             notifyError("Palabra no valida: " + palabra);
             decrementarPuntaje(palabra);
+            mostrarYuca(rootPane);
         }
 
         if (selectionState.getSelectionStart() == selectionState.getSelectionEnd())
@@ -180,7 +184,8 @@ public class ControladorSopa {
     private void checkVictory() {
         int nMarcadas = sopaLetras.getPalabrasMarcadas().size();
         if (nMarcadas == 10) {
-            showMessage("VICTORIA", "Felicidades, has encontrado todas las palabras!", true);
+            showMessage("VICTORIA", "Felicidades, has encontrado todas las palabras!");
+            cargarVistaInicio(tableroJuego.getScene());
         }
     }
 
@@ -193,8 +198,10 @@ public class ControladorSopa {
     private void decrementarPuntaje(String palabra) {
         int puntosPerdidos  = palabra.length();
         int erroresActuales = Integer.parseInt(lblErrores.getText());
-        if (erroresActuales >= MAX_ERRORES)
-            notifyError("Maximo numero de errores alcanzado!", true);
+        if (erroresActuales >= MAX_ERRORES) {
+            notifyError("Maximo numero de errores alcanzado!");
+            cargarVistaInicio(tableroJuego.getScene());
+        }
         int puntosActuales  = Integer.parseInt(lblPuntos.getText());
         lblPuntos.setText(String.valueOf(puntosActuales - puntosPerdidos));
         lblErrores.setText(String.valueOf(erroresActuales + 1));
@@ -273,6 +280,6 @@ public class ControladorSopa {
 
     @FXML
     private void onSalir(ActionEvent e) {
-        Platform.exit();
+        cargarVistaInicio(tableroJuego.getScene());
     }
 }

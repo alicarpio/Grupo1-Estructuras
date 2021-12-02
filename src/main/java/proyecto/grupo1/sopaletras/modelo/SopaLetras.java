@@ -214,11 +214,11 @@ public class SopaLetras {
         random = new Rd();
 
         String path = String.format("/data/%s/%s.txt",
-                idioma.equals("EspaÃ±ol") ? "espanol/" : "ingles/", tema);
+                idioma.equals("Español") ? "espanol/" : "ingles/", tema);
         List<String> palabras = FS.readFile(getClass().getResource(path).toURI());
 
         for (int i = 0; i < 10;) {
-            String p = random.choice(palabras);
+            String p = random.choice(palabras).toUpperCase();
             if (palabrasValidas.indexOf(p) == -1) {
                 palabrasValidas.pushBack(p);
                 i++;
@@ -281,7 +281,7 @@ public class SopaLetras {
     }
 
     public SopaLetras(int rows, int cols) throws Exception {
-        this(rows, cols, "animales","espanol");
+        this(rows, cols, "animales", "espanol");
     }
 
     public SopaLetras() throws Exception {
